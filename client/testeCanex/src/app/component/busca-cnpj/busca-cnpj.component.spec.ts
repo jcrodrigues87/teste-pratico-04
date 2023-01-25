@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuscaGeneroComponent } from './busca-genero.component';
+import { BuscaCnpjComponent } from './busca-cnpj.component';
 
-describe('BuscaGeneroComponent', () => {
-  let component: BuscaGeneroComponent;
-  let fixture: ComponentFixture<BuscaGeneroComponent>;
+describe('BuscaCnpjComponent', () => {
+  let component: BuscaCnpjComponent;
+  let fixture: ComponentFixture<BuscaCnpjComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BuscaGeneroComponent ]
+      declarations: [ BuscaCnpjComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BuscaGeneroComponent);
+    fixture = TestBed.createComponent(BuscaCnpjComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

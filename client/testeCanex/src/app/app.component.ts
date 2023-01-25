@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'testeEddyData';
+  title = 'Teste Canex';
 
   constructor(private service: ClienteService){}
 

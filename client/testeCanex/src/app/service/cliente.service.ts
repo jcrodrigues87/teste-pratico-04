@@ -35,11 +35,11 @@ export class ClienteService {
     return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
   }
 
-  // pesquisaPorCnpj(cnpj: string){
-  //   let method = this.url + "/find/cnpj";
-  //   let body = {"cnpj": cnpj};
-  //   return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
-  // }
+  pesquisaPorCnpj(cnpj: string){
+    let method = this.url + "/find/cnpj";
+    let body = {"cnpj": cnpj};
+    return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
+  }
 
   // pesquisaPorRazao(genero: string){
   //   let method = this.url + "/find/razao";

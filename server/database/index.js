@@ -1,5 +1,5 @@
 import { DataTypes, Sequelize, Op } from "sequelize";
-import Usuario from "../models";
+import Prestador from "../models";
 
 export default class Database{
 
@@ -12,7 +12,7 @@ export default class Database{
         this.database = process.env.BD_DATABASE;
         this.model = null;
         this.connection = null;
-        this.usuario = new Usuario();
+        this.prestador = new Prestador();
     }
 
     connect(){
@@ -64,46 +64,42 @@ export default class Database{
         await this.sequelize.close();
     }
 
-    async save(usuario){
-        console.log(usuario);
+    async save(prestador){
+        console.log(prestador);
         try {
-            this.usuario = usuario;
-            return await this.model.create(this.usuario);
+            this.prestador = prestador;
+            return await this.model.create(this.prestador);
         } catch (error) {
-            console.log("An error ocurred when trying to save the user.");
+            console.log("An error ocurred when trying to save the data.");
             console.log(error);
             return null;
         }
     }
 
-    async getInstance(usuario){
+    async getInstance(prestador){
         try {
             
             const returnedUser =  await this.model.findOne({where: {
-                nome: usuario.nome,
-                cpf: usuario.cpf,
-                rg: usuario.rg
+                cnpj: prestador.cnpj
             }});
             return returnedUser;
         } catch (error) {
-            console.log("An error ocurred getting the user");
+            console.log("An error ocurred getting the data");
             console.log(error);
             return null;
         }
     }
 
-    async update(usuario){
+    async update(prestador){
         try {
             const affectedRows = await this.model.update(
                 {
-                    pai: usuario.pai,
-                    mae: usuario.mae
+                    email: prestador.email,
+                    razao: prestador.razao
                 },
                 {
                     where: {
-                        nome: usuario.nome,
-                        cpf: usuario.cpf,
-                        rg: usuario.rg
+                        cnpj: this.prestador.cnpj
                     }
                 }
             );
@@ -111,23 +107,21 @@ export default class Database{
             console.log(affectedRows);
             return affectedRows;
         } catch (error) {
-            console.log("An error ocurred updating the user.");
+            console.log("An error ocurred updating the data.");
             console.log(error);
             return null;
         }
     }
 
-    async delete(usuario){
+    async delete(prestador){
         try {
             return await this.model.destroy({
                 where: {
-                    nome: usuario.nome,
-                    cpf: usuario.cpf,
-                    rg: usuario.rg
+                    cnpj: prestador.cnpj
                 }
             });
         } catch (error) {
-            console.log("An error ocurred trying to delete the user.");
+            console.log("An error ocurred trying to delete the data.");
             console.log(error);
         }
     }
@@ -138,175 +132,55 @@ export default class Database{
             console.log(foundClient);
             return foundClient;
         } catch (error) {
-            console.log("An error ocurred finding the user by id");
+            console.log("An error ocurred finding the data by id");
             console.log(error);
             return null;
         }
     }
 
-    async findByGender(gender){
+    async findByCnpj(cnpj){
         try {
             return await this.model.findAll({
                 where: {
-                    sexo: gender
+                    cnpj: cnpj
                 }
             });
         } catch (error) {
-            console.log("An error ocurred when sarching for gender.");
+            console.log("An error ocurred when searching for cnpj.");
             console.log(error);
             return null;
         }
     }
 
-    async findByBirthday(initDate, finalDate){
+    async findByRazao(razao){
         try {
-            console.log(initDate);
-            console.log(finalDate);
-            let foundClients = await this.model.findAll({
+            return await this.model.findAll({
                 where: {
-                    datadenascimento: {
-                        [Op.between]: [initDate, finalDate]
-                    }
+                    razao: razao
                 }
             });
-            return foundClients;
         } catch (error) {
-            console.log("An error ocurred search by birthday");
+            console.log("An error ocurred when searching for razao.");
             console.log(error);
             return null;
         }
     }
 
-    async totalByGender(){
-        let answer = {
-            rows: 0,
-            genders: {}
-        };
-
+    async findByEmail(email){
         try {
-            let allRows = await this.getTotalRows();
-            answer.rows = allRows;
-        } catch (error) {
-            console.log("Error getting the total rows.");    
-            console.log(error);
-            return answer;
-        }
-
-        try {
-            let genderTotal = await this.model.findAll(
-                {
-                    "attributes": [
-                        "sexo",
-                        [
-                            this.sequelize.fn("sum", this.sequelize.col("salario")), "salario"
-                        ]
-                    ],
-                    "group": ["sexo"],
-                    order: this.sequelize.literal("sexo DESC")
+            return await this.model.findAll({
+                where: {
+                    email: email
                 }
-            );
-            answer.genders = genderTotal;
-        } catch (error) {
-            console.log("Error getting the sum.");    
-            console.log(error);
-        }
-
-
-        
-        return answer;
-    }
-
-    async totalByCity(){
-
-        let answer = {
-            rows: 0,
-            cities: {}
-        };
-
-        try {
-            let allRows = await this.getTotalRows();
-            answer.rows = allRows;
-        } catch (error) {
-            console.log("Error getting the total rows.");    
-            console.log(error);
-            return answer;
-        }
-
-        try {
-
-            let citiesTotal = await this.model.findAll({
-                "attributes": [
-                    "cidade",
-                    [
-                        this.sequelize.fn("sum", this.sequelize.col("salario")), "salario"
-                    ]
-                ],
-                group: ["cidade"],
-                order: this.sequelize.literal("cidade DESC")
             });
-
-            console.log(citiesTotal);
-    
-            answer.cities = citiesTotal;
-
         } catch (error) {
-            console.log("Error getting the total rows.");    
+            console.log("An error ocurred when searching for email.");
             console.log(error);
+            return null;
         }
-
-
-        return answer;
-
     }
 
-    async totalBySpecies(){
-        
-        let answer = {
-            rows: 0,
-            species: {}
-        };
-
-        try {
-            let allRows = await this.getTotalRows();
-            answer.rows = allRows;
-        } catch (error) {
-            console.log("Error getting the total rows.");    
-            console.log(error);
-            return answer;
-        }
-
-        try {
-
-            let speciesTotal = await this.model.findAll({
-                "attributes": [
-                    "especie",
-                    [
-                        this.sequelize.fn("sum", this.sequelize.col("salario")), "salario"
-                    ]
-                ],
-                group: ["especie"],
-                order: this.sequelize.literal("especie DESC")
-            });
-
-            console.log(speciesTotal);
-    
-            answer.species = speciesTotal;
-        } catch (error) {
-            console.log("Error getting the total rows.");    
-            console.log(error);
-        }
-                
-        return answer;
-    }
-
-    async getTotalRows(){
-        let allRows = await this.model.findAll();
-        let records = allRows.length;
-        return records;
-    }
-
-    async getAllRows(){
+    async findAll(){
         return await this.model.findAll();
     }
-
 }

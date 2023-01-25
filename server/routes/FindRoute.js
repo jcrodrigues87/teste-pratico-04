@@ -10,8 +10,9 @@ export default class FindRoute{
 
     async init(){
         this.findById();
-        this.findByGender();
-        this.findByBirthday();
+        this.findByCnpj();
+        this.findByRazao();
+        this.findByEmail();
         this.find();
     }
 
@@ -43,15 +44,15 @@ export default class FindRoute{
         });
     }
 
-    async findByGender(){
-        this.app.post("/find/gender", async (req, res) => {
-            const gender = req.body.gender;
+    async findByCnpj(){
+        this.app.post("/find/cnpj", async (req, res) => {
+            const cnpj = req.body.cnpj;
 
             try {
 
                 if (this.connectDatabase() == null) return res.status(500).send("Cannot complete your request. Try again later.")
 
-                let foundClient = await this.database.findByGender(gender);
+                let foundClient = await this.database.findByCnpj(cnpj);
 
                 if(foundClient == null) return res.status(500).send("Cannot complete your request. Try again later.")
 
@@ -61,7 +62,7 @@ export default class FindRoute{
     
                 return res.send(jsonClient);
             } catch (error) {
-                console.log("An error ocurred when searching for gender.");
+                console.log("An error ocurred when searching for cnpj.");
                 console.log(error);
                 return res.status(500).send("Cannot complete your request. Try again later.")
             }
@@ -69,14 +70,65 @@ export default class FindRoute{
         });
     }
 
-    async findByBirthday(){
-        this.app.post("/find/birthday", async (req, res) => {
-            const {initDate, finalDate} = req.body;
+    async findByRazao(){
+        this.app.post("/find/razao", async (req, res) => {
+            const razao = req.body.razao;
+
+            try {
+
+                if (this.connectDatabase() == null) return res.status(500).send("Cannot complete your request. Try again later.")
+
+                let foundClient = await this.database.findByRazao(razao);
+
+                if(foundClient == null) return res.status(500).send("Cannot complete your request. Try again later.")
+
+                let jsonClient = foundClient;
+
+                if(jsonClient == null) return res.status(500).send("Cannot complete your request. Try again later.")
+    
+                return res.send(jsonClient);
+            } catch (error) {
+                console.log("An error ocurred when searching for razao.");
+                console.log(error);
+                return res.status(500).send("Cannot complete your request. Try again later.")
+            }
+            
+        });
+    }
+
+    async findByEmail(){
+        this.app.post("/find/email", async (req, res) => {
+            const email = req.body.email;
+
+            try {
+
+                if (this.connectDatabase() == null) return res.status(500).send("Cannot complete your request. Try again later.")
+
+                let foundClient = await this.database.findByEmail(email);
+
+                if(foundClient == null) return res.status(500).send("Cannot complete your request. Try again later.")
+
+                let jsonClient = foundClient;
+
+                if(jsonClient == null) return res.status(500).send("Cannot complete your request. Try again later.")
+    
+                return res.send(jsonClient);
+            } catch (error) {
+                console.log("An error ocurred when searching for email.");
+                console.log(error);
+                return res.status(500).send("Cannot complete your request. Try again later.")
+            }
+            
+        });
+    }
+
+    async find(){
+        this.app.post("/find", async (req, res) => {
             
             try {
                 if (this.connectDatabase() == null) return res.status(500).send("Cannot complete your request. Try again later.")
 
-                let foundClients = await this.database.findByBirthday(new Date(initDate), new Date(finalDate));
+                let foundClients = await this.database.findAll();
 
                 if(foundClients == null) return res.status(500).send("Cannot complete your request. Try again later.")
 
@@ -88,53 +140,8 @@ export default class FindRoute{
                 console.log(error);
                 return res.status(500).send("Cannot complete your request. Try again later.") 
             }
-        });
-    }
-
-    async find(){
-        this.app.post("/find", async (req, res) => {
-            
-            const method = req.body.method;
-
-            if (method !== "gender" && method !== "city" && method !== "species") return res.status(401).send("Method not available. Available methods:\n gender, city, species")
-
-            if (method === "gender") await this.totalByGender(res);
-
-            if (method === "city") await this.totalByCity(res);
-
-            if (method === "species") await this.totalBySpecies(res);
 
         });
-    }
-
-    async totalByGender(res){
-
-        let answer = await this.database.totalByGender();
-        
-        // if (answer.rows == 0 || answer.salary == 0) return res.status(500).send("Cannot complete your request. Try again.");
-
-        return res.send(answer);
-
-    }
-
-    async totalByCity(res){
-
-        let answer = await this.database.totalByCity();
-        
-        // if (answer.rows == 0 || answer.salary == 0) return res.status(500).send("Cannot complete your request. Try again.");
-
-        return res.send(answer);
-
-    }
-
-    async totalBySpecies(res){
-        
-        let answer = await this.database.totalBySpecies();
-        
-        // if (answer.rows == 0 || answer.salary == 0) return res.status(500).send("Cannot complete your request. Try again.");
-
-        return res.send(answer);
-
     }
 
     async connectDatabase(){

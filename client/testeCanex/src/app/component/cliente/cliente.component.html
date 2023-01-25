@@ -1,0 +1,42 @@
+<div id="formulario">
+  <form (ngSubmit)="salvar()">
+
+    <div class="mb-3">
+      <label for="cnpj" class="form-label">CNPJ</label>
+      <input type="text" name="cnpj" id="cnpj" [(ngModel)]="cnpj" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="razao" class="form-label">Razão Social</label>
+      <input type="text" name="razao" id="razao" [(ngModel)]="razao" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="abertura" class="form-label">Data de Abertura</label>
+      <input type="date" name="abertura" id="abertura" [(ngModel)]="abertura" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="telefone" class="form-label">Telefone</label>
+      <input type="text" name="telefone" id="telefone" [(ngModel)]="telefone" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="cep" class="form-label">CEP</label>
+      <input type="text" name="cep" id="cep" [(ngModel)]="cep" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="endereco" class="form-label">Endereço</label>
+      <input type="text" name="endereco" id="endereco" [(ngModel)]="endereco" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+  </form>
+</div>

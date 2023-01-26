@@ -41,17 +41,17 @@ export class ClienteService {
     return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
   }
 
-  // pesquisaPorRazao(genero: string){
-  //   let method = this.url + "/find/razao";
-  //   let body = {"razao": razao};
-  //   return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
-  // }
+  pesquisaPorRazao(razao: string){
+    let method = this.url + "/find/razao";
+    let body = {"razao": razao};
+    return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
+  }
 
-  // pesquisaPorEmail(genero: string){
-  //   let method = this.url + "/find/email";
-  //   let body = {"email": email};
-  //   return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
-  // }
+  pesquisaPorEmail(email: string){
+    let method = this.url + "/find/email";
+    let body = {"email": email};
+    return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
+  }
 
   pesquisaTotal(){
     let method = this.url + "/find";

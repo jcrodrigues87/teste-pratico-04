@@ -1,8 +1,8 @@
 <div *ngIf="clientes.length == 0; else temCliente">
   <form (ngSubmit)="pesquisar()">
     <div class="mb-3">
-      <label for="cnpj">CNPJ</label>
-      <input type="text" name="cnpj" id="cnpj" [(ngModel)]="cnpj" class="form-control">
+      <label for="razao">Razão Social</label>
+      <input type="text" name="razao" id="razao" [(ngModel)]="razao" class="form-control">
     </div>
     <button class="btn btn-primary">Pesquisar</button>
   </form>

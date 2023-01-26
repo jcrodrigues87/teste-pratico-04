@@ -12,6 +12,8 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BuscaIdComponent } from './component/busca-id/busca-id.component';
 import { BuscaCnpjComponent } from './component/busca-cnpj/busca-cnpj.component';
+import { BuscaRazaoComponent } from './component/busca-razao/busca-razao.component';
+import { BuscaEmailComponent } from './component/busca-email/busca-email.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -22,6 +24,8 @@ registerLocaleData(localePt, 'pt');
     BuscaComponent,
     BuscaIdComponent,
     BuscaCnpjComponent,
+    BuscaRazaoComponent,
+    BuscaEmailComponent,
   ],
   imports: [
     BrowserModule,

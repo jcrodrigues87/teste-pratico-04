@@ -28,8 +28,8 @@
           <td scope="row">{{cliente?.endereco}}</td>
           <td scope="row">{{cliente?.createdAt | date:"short"}}</td>
           <td scope="row">{{cliente?.updatedAt | date:"short" }}</td>
-          <td scope="row"><button class="btn btn-warning">Alterar</button></td>
-          <td scope="row"><button class="btn btn-danger">Excluir</button></td>
+          <td scope="row"><button class="btn btn-warning" (click)="alterar(cliente)">Alterar</button></td>
+          <td scope="row"><button class="btn btn-danger" (click)="excluir(cliente)">Excluir</button></td>
         </tr>
     </tbody>
     <ng-template #listaVazia>

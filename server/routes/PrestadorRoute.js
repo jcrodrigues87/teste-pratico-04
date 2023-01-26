@@ -50,7 +50,7 @@ export default class ClientRoute{
                     endereco
                     );
                 let savedPrestador = await this.database.save(this.prestador);
-                return res.send(savedPrestador);
+                return res.json(savedPrestador);
             } catch (error) {
                 console.log("Error saving the data. Try again later.");
                 console.log(error);
@@ -60,7 +60,7 @@ export default class ClientRoute{
     }
 
     async update(){
-        this.app.put("/prestador", async (req, res) => {
+        this.app.put("/prestador/alterar", async (req, res) => {
 
             let dataAbertura = new Date();
 
@@ -94,7 +94,8 @@ export default class ClientRoute{
                 
                 if (updatedRows.toString() === "0") return res.status(500).send("Cannot complete your request. Try again later.") 
 
-                return res.send(updatedRows.toString() + " rows update successfully.");
+                // return res.send(updatedRows.toString() + " rows update successfully.");
+                return res.json({message: updatedRows.toString() + " rows updated successfully."});
                 
             } catch (error) {
                 console.log("Error saving the data. Try again later.");
@@ -105,7 +106,7 @@ export default class ClientRoute{
     }
 
     async delete(){
-        this.app.delete("/prestador", async (req, res) => {
+        this.app.put("/prestador/excluir", async (req, res) => {
 
             let dataAbertura = new Date();
 
@@ -139,7 +140,7 @@ export default class ClientRoute{
 
                 let rowsAffected = await this.database.delete(this.prestador);
                 if(rowsAffected == 0) res.status(500).send("Cannot complete your request. Try again.");
-                return res.send(rowsAffected.toString() + " rows affected.")
+                return res.json({message: rowsAffected.toString() + " rows affected."})
 
             } catch (error) {
                 console.log("An error ocurred trying to delete the data.");

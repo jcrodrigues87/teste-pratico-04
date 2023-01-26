@@ -29,6 +29,16 @@ export class ClienteService {
     return this.httpClient.post<Cliente>(method, JSON.stringify(cliente), this.httpOptions);
   }
 
+  alterar(cliente: Cliente): Observable<Cliente>{
+    let method = this.url + "/prestador/alterar";
+    return this.httpClient.put<Cliente>(method, JSON.stringify(cliente), this.httpOptions);
+  }
+
+  excluir(cliente: Cliente): Observable<Cliente>{
+    let method = this.url + "/prestador/excluir";
+    return this.httpClient.put<Cliente>(method, JSON.stringify(cliente), this.httpOptions);
+  }
+
   pesquisaPorId(id: string){
     let method = this.url + "/find/id";
     let body = {id};
@@ -37,19 +47,19 @@ export class ClienteService {
 
   pesquisaPorCnpj(cnpj: string){
     let method = this.url + "/find/cnpj";
-    let body = {"cnpj": cnpj};
+    let body = {cnpj};
     return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
   }
 
   pesquisaPorRazao(razao: string){
     let method = this.url + "/find/razao";
-    let body = {"razao": razao};
+    let body = {razao};
     return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
   }
 
   pesquisaPorEmail(email: string){
     let method = this.url + "/find/email";
-    let body = {"email": email};
+    let body = {email};
     return this.httpClient.post<Cliente[]>(method, body, this.httpOptions);
   }
 

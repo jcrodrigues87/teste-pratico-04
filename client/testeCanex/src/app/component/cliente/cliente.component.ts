@@ -25,6 +25,9 @@ export class ClienteComponent implements OnInit {
   }
 
   salvar() {
+
+    console.log("Salvando cliente " + this.cnpj);
+
     let cliente: Cliente = {
       cnpj: this.cnpj,
       razao: this.razao,
@@ -44,11 +47,11 @@ export class ClienteComponent implements OnInit {
   }
 
   testar() {
-    this.cnpj = "3654898";
+    this.cnpj = "12345678910";
     this.razao = "teste matheus";
     this.abertura = new Date();
     this.telefone = "37999435990";
-    this.email = "matheusmiranda@canex.com.br";
+    this.email = "matheus@email.com";
     this.cep = "37925000";
     this.endereco = "Rua Helena Rosália Silva, 74";
   }
@@ -61,5 +64,36 @@ export class ClienteComponent implements OnInit {
     this.email = "";
     this.cep = "";
     this.endereco = "";
+  }
+
+  alterar(){
+    console.log("Alterando cliente " + this.cnpj);
+
+    let cliente: Cliente = {
+      cnpj: this.cnpj,
+      razao: this.razao,
+      abertura: this.abertura,
+      telefone: this.telefone,
+      email: this.email,
+      cep: this.cep,
+      endereco: this.endereco,
+    };
+
+    this.service.alterar(cliente).subscribe((resultado) => {
+
+      this.limpar();
+    },
+    error => console.log(error)
+    );
+  }
+
+  pesquisar(){
+    let resultado = this.service.pesquisaPorEmail(this.email)
+    .subscribe(
+      resultado => resultado,
+      error => console.log(error)
+    );
+    console.log(resultado);
+
   }
 }

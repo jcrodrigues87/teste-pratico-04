@@ -1,5 +1,5 @@
 <div id="formulario">
-  <form (ngSubmit)="salvar()">
+  <form>
 
     <div class="mb-3">
       <label for="cnpj" class="form-label">CNPJ</label>
@@ -36,7 +36,8 @@
       <input type="text" name="endereco" id="endereco" [(ngModel)]="endereco" class="form-control">
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Cadastrar</button>
+    <button class="btn btn-danger" (click)="alterar()">Alterar</button>
 
   </form>
 </div>

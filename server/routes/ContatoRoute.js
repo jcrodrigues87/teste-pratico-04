@@ -13,6 +13,7 @@ export default class ContatoRoute{
 
     init(){
         this.salvar();
+        this.listar();
     }
 
     async salvar(){
@@ -33,11 +34,30 @@ export default class ContatoRoute{
             } catch (error) {
                 console.log("Error saving the data. Try again later.");
                 console.log(error);
-                return res.status(500).send("Cannot complete your request. Try again later.")
+                return res.status(500).json({message: "Cannot complete your request. Try again later."})
             }
 
         });
 
+    }
+
+    async listar(){
+        this.app.post("/contato/listar", async (req, res) => {
+
+            let id = req.body.id;
+
+            if (id === null || id === "") return res.status(400).json({message: "fill all the required fields"});
+
+            try {
+                let returnedContacts = await this.database.getContatos(id);
+                console.log("Returned rows: ", returnedContacts.length);
+                return res.json(returnedContacts);
+            } catch (error) {
+                console.log("Error saving the data. Try again later.");
+                console.log(error);
+                return res.status(500).json({message: "Cannot complete your request. Try again later."})
+            }
+        });
     }
 
     async connectDatabase(){

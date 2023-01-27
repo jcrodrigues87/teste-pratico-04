@@ -22,10 +22,10 @@ export class ContatoService {
     return this.listaContatos;
   }
 
-  pesquisar(id: string){
-    let method = this.url + "/contato/pesquisar";
+  listar(id: string){
+    let method = this.url + "/contato/listar";
     let body = {id};
-    return this.httpClient.post<Contato>(method, body, this.httpOptions);
+    return this.httpClient.post<Contato[]>(method, body, this.httpOptions);
   }
 
   salvar(contato: Contato): Observable<Contato>{

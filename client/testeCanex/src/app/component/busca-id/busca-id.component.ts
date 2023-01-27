@@ -22,8 +22,30 @@ export class BuscaIdComponent implements OnInit {
     .subscribe((resultado) => {
       this.clientes.push(resultado);
     },
-    error => console.log(error)
+    error => {console.log(error); this.mostraMensagem("Nenhum prestador foi encontrado com o ID informado", "danger");}
     );
+
+  }
+
+  mostraMensagem(mensagem: string, nivel: string){
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+    const alert = (message: string, level: string) => {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${level} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '</div>'
+      ].join('')
+
+      alertPlaceholder.append(wrapper)
+
+      setTimeout(() => {
+        wrapper.remove();
+      }, 3000);
+    }
+
+    alert(mensagem, nivel)
 
   }
 

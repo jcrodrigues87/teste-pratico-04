@@ -1,0 +1,36 @@
+<div *ngIf="contatos.length == 0; else temContato">
+  <form (ngSubmit)="pesquisar()">
+    <div class="mb-3">
+      <label for="id">ID Prestador</label>
+      <input type="text" name="id" id="id" [(ngModel)]="id" class="form-control">
+    </div>
+    <button class="btn btn-primary">Pesquisar</button>
+  </form>
+</div>
+
+<ng-template #temContato>
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">ID Prestador</th>
+        <th scope="col">Contador</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Data Criação</th>
+        <th scope="col">Última modificação</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contato of contatos">
+          <td scope="row">{{contato?.id}}</td>
+          <td scope="row">{{contato?.prestadorId}}</td>
+          <td scope="row">{{contato?.contador}}</td>
+          <td scope="row">{{contato?.departamento}}</td>
+          <td scope="row">{{contato?.email}}</td>
+          <td scope="row">{{contato?.createdAt | date:"short"}}</td>
+          <td scope="row">{{contato?.updatedAt | date:"short" }}</td>
+        </tr>
+    </tbody>
+  </table>
+</ng-template>

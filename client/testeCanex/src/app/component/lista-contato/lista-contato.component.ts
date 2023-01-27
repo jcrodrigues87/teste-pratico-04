@@ -1,31 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from 'src/app/service/cliente.service';
+import { ContatoService } from 'src/app/service/contato.service';
 
 @Component({
-  selector: 'app-busca-cnpj',
-  templateUrl: './busca-cnpj.component.html',
-  styleUrls: ['./busca-cnpj.component.css']
+  selector: 'app-lista-contato',
+  templateUrl: './lista-contato.component.html',
+  styleUrls: ['./lista-contato.component.css']
 })
-export class BuscaCnpjComponent implements OnInit {
+export class ListaContatoComponent implements OnInit {
 
-  cnpj: string;
-  clientes: any[] = [];
+  id: string;
+  contatos: any[] = [];
 
-  constructor(private service: ClienteService) { }
+  constructor(private service: ContatoService) { }
 
   ngOnInit(): void {
   }
 
   pesquisar(): void{
-    this.service.pesquisaPorCnpj(this.cnpj)
-    .subscribe((resultado) => {
-      console.log(resultado);
-      this.clientes = resultado;
-    },
-    error => {
-      console.log(error);
-      this.mostraMensagem("Nenhum prestador foi encontrado com o CNPJ informado", "danger");
-    }
+    this.service.listar(this.id).subscribe(
+      resultado => {
+        this.contatos = resultado;
+      },
+      erro => {
+        console.log(erro);
+        this.mostraMensagem("Nenhum contato foi encontrado com o ID informado", "danger");
+      }
     );
   }
 

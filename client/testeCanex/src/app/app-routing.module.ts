@@ -1,3 +1,4 @@
+import { ListaContatoComponent } from './component/lista-contato/lista-contato.component';
 import { ContatoComponent } from './component/contato/contato.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'busca-razao', component: BuscaRazaoComponent},
   { path: 'busca-email', component: BuscaEmailComponent},
   { path: 'contato', component: ContatoComponent},
+  { path: 'lista-contato', component: ListaContatoComponent},
 ];
 
 @NgModule({

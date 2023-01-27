@@ -50,6 +50,9 @@ export default class ClientRoute{
                     endereco
                     );
                 let savedPrestador = await this.database.save(this.prestador);
+
+                if (savedPrestador === null) return res.status(400).json({message: "Cannot save your prestador."});
+
                 return res.json(savedPrestador);
             } catch (error) {
                 console.log("Error saving the data. Try again later.");

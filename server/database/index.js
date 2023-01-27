@@ -41,9 +41,9 @@ export default class Database{
                 razao: {type: DataTypes.STRING, allowNull: false},
                 dataAbertura: {type: DataTypes.DATEONLY, allowNull: false},
                 telefone: {type: DataTypes.STRING, allowNull: false},
-                email: {type: DataTypes.STRING, allowNull: false},
+                email: {type: DataTypes.STRING, allowNull: false, unique: "idx_email"},
                 cep: {type: DataTypes.STRING, allowNull: false},
-                endereco: {type: DataTypes.STRING, allowNull: false}
+                endereco: {type: DataTypes.STRING, allowNull: false},
             })
         } catch (error) {
             console.log("Error when creating the database model.");

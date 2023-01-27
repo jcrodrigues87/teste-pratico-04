@@ -34,7 +34,7 @@ export class ClienteComponent implements OnInit {
   constructor(private service: ClienteService, private busca: BuscaCepService) {}
 
   ngOnInit() {
-    // this.testar();
+    this.testar();
   }
 
   salvar() {
@@ -116,15 +116,15 @@ export class ClienteComponent implements OnInit {
 
     let subscriber = this.busca.buscar(this.cep);
 
-    this.endereco = "";
+    // this.endereco = "";
 
     subscriber.subscribe(resultado => {
       this.resultado = resultado;
-      if (this.resultado.logradouro !== "") this.endereco += this.resultado.logradouro + ", ";
-      if (this.resultado.complemento !== "") this.endereco += this.resultado.complemento + ", ";
-      if (this.resultado.bairro !== "") this.endereco += this.resultado.bairro + ", ";
-      if (this.resultado.localidade !== "") this.endereco += this.resultado.localidade + ", ";
-      if (this.resultado.uf !== "") this.endereco += this.resultado.uf;
+      if (this.resultado.logradouro !== "") this.endereco += ", " + this.resultado.logradouro + ", ";
+      if (this.resultado.complemento !== "") this.endereco += ", " + this.resultado.complemento + ", ";
+      if (this.resultado.bairro !== "") this.endereco += ", " + this.resultado.bairro + ", ";
+      if (this.resultado.localidade !== "") this.endereco += ", " + this.resultado.localidade + ", ";
+      if (this.resultado.uf !== "") this.endereco += ", " + this.resultado.uf;
     }, erro => {console.log(erro); this.mostraMensagem("Não foi possível buscar o cep " + this.cep, "danger")});
 
   }

@@ -14,6 +14,7 @@ import { BuscaIdComponent } from './component/busca-id/busca-id.component';
 import { BuscaCnpjComponent } from './component/busca-cnpj/busca-cnpj.component';
 import { BuscaRazaoComponent } from './component/busca-razao/busca-razao.component';
 import { BuscaEmailComponent } from './component/busca-email/busca-email.component';
+import { ContatoComponent } from './component/contato/contato.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -26,6 +27,7 @@ registerLocaleData(localePt, 'pt');
     BuscaCnpjComponent,
     BuscaRazaoComponent,
     BuscaEmailComponent,
+    ContatoComponent,
   ],
   imports: [
     BrowserModule,

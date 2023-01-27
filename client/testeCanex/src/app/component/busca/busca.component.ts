@@ -16,7 +16,7 @@ export class BuscaComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.pesquisaTotal().subscribe((clientes: Cliente[]) => {
-      console.table(clientes);
+      // console.table(clientes);
       this.clientes = clientes;
 
     });

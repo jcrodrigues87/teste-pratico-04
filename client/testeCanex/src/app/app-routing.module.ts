@@ -1,3 +1,4 @@
+import { ContatoComponent } from './component/contato/contato.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuscaCnpjComponent } from './component/busca-cnpj/busca-cnpj.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'busca-cnpj', component: BuscaCnpjComponent},
   { path: 'busca-razao', component: BuscaRazaoComponent},
   { path: 'busca-email', component: BuscaEmailComponent},
+  { path: 'contato', component: ContatoComponent},
 ];
 
 @NgModule({

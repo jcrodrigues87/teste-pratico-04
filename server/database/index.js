@@ -1,5 +1,6 @@
 import { DataTypes, Sequelize, Op } from "sequelize";
 import Prestador from "../models";
+import ContatoModel from "../models/ContatoModel";
 
 export default class Database{
 
@@ -12,7 +13,9 @@ export default class Database{
         this.database = process.env.BD_DATABASE;
         this.model = null;
         this.connection = null;
+        this.contatoModel = null;
         this.prestador = new Prestador();
+        this.contato = new ContatoModel();
     }
 
     connect(){
@@ -35,6 +38,7 @@ export default class Database{
     async setModel(){
 
         try {
+
             this.model = this.sequelize.define("Prestadore", {
                 id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
                 cnpj: {type: DataTypes.STRING, allowNull: false},
@@ -45,6 +49,14 @@ export default class Database{
                 cep: {type: DataTypes.STRING, allowNull: false},
                 endereco: {type: DataTypes.STRING, allowNull: false},
             })
+
+            this.contatoModel = this.sequelize.define("Contato", {
+                id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
+                prestadorId: {type: DataTypes.INTEGER, allowNull: false},
+                contador: {type: DataTypes.STRING, allowNull: false},
+                departamento: {type: DataTypes.STRING, allowNull: false},
+                email: {type: DataTypes.STRING, allowNull: false}
+            });
         } catch (error) {
             console.log("Error when creating the database model.");
             console.log(error);
@@ -54,6 +66,7 @@ export default class Database{
     async sync(){
         try {
             this.model.sync();
+            this.contatoModel.sync();
         } catch (error) {
             console.log("Error creating the database.");
             console.log(error);
@@ -76,6 +89,21 @@ export default class Database{
         }
     }
 
+    async saveContato(contato){
+        // console.log(contato);
+        try {
+            this.contato = contato;
+            let savedContato = await this.contatoModel.create(this.contato);
+            // return await this.contatoModel.create(this.contato);
+            // console.log(savedContato);
+            return savedContato;
+        } catch (error) {
+            console.log("An error ocurred when trying to save the data.");
+            console.log(error);
+            return null;
+        }
+    }
+
     async getInstance(prestador){
         try {
             
@@ -83,6 +111,21 @@ export default class Database{
                 cnpj: prestador.cnpj
             }});
             return returnedUser;
+        } catch (error) {
+            console.log("An error ocurred getting the data");
+            console.log(error);
+            return null;
+        }
+    }
+
+    async getContatos(prestadorId){
+        try {
+            const returnedContato = await this.contatoModel.findAll({
+                where: {
+                    prestadorId
+                }
+            });
+            return returnedContato;
         } catch (error) {
             console.log("An error ocurred getting the data");
             console.log(error);

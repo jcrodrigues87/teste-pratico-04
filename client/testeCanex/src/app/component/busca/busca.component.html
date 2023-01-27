@@ -14,6 +14,7 @@
         <th scope="col">Última modificação</th>
         <th scope="col">Alterar</th>
         <th scope="col">Excluir</th>
+        <th scope="col">Incluir Contato</th>
       </tr>
     </thead>
     <tbody *ngIf="!!clientes; else listaVazia">
@@ -30,6 +31,7 @@
           <td scope="row">{{cliente?.updatedAt | date:"short" }}</td>
           <td scope="row"><button class="btn btn-warning" (click)="alterar(cliente)">Alterar</button></td>
           <td scope="row"><button class="btn btn-danger" (click)="excluir(cliente)">Excluir</button></td>
+          <td scope="row"><a routerLink="/contato"><button class="btn btn-success">Incluir Contato</button></a></td>
         </tr>
     </tbody>
     <ng-template #listaVazia>

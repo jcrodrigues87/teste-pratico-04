@@ -18,6 +18,7 @@ export class ClienteComponent implements OnInit {
   email: string = '';
   cep: string = '';
   endereco: string = '';
+
   resultado: any = {
     cep: "",
     logradouro: "",
@@ -30,6 +31,8 @@ export class ClienteComponent implements OnInit {
     ddd: "",
     siafi: ""
   };
+
+  fileName = '';
 
   constructor(private service: ClienteService, private busca: BuscaCepService) {}
 
@@ -50,6 +53,7 @@ export class ClienteComponent implements OnInit {
       cep: this.cep,
       endereco: this.endereco,
     };
+
 
     this.service.salvar(cliente).subscribe((resultado) => {
 
@@ -102,16 +106,6 @@ export class ClienteComponent implements OnInit {
     );
   }
 
-  pesquisar(){
-    let resultado = this.service.pesquisaPorEmail(this.email)
-    .subscribe(
-      resultado => resultado,
-      error => {console.log(error); this.mostraMensagem("Não foi possível pesquisar o e-mail " + this.email, "danger")}
-    );
-    console.log(resultado);
-
-  }
-
   buscar(){
 
     let subscriber = this.busca.buscar(this.cep);
@@ -150,5 +144,7 @@ export class ClienteComponent implements OnInit {
     alert(mensagem, nivel)
 
   }
+
+  upload(event){}
 
 }

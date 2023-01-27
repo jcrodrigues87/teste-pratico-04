@@ -32,12 +32,16 @@
     </div>
 
     <div class="mb-3">
+      <button class="btn btn-primary" (click)="buscar()">Buscar Endereço</button>
+    </div>
+
+    <div class="mb-3">
       <label for="endereco" class="form-label">Endereço</label>
       <input type="text" name="endereco" id="endereco" [(ngModel)]="endereco" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-primary" (click)="salvar()">Cadastrar</button>
-    <button class="btn btn-danger" (click)="alterar()">Alterar</button>
+    <button class="btn btn-warning" (click)="alterar()">Alterar</button>
 
   </form>
 </div>

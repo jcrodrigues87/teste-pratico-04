@@ -1,18 +1,18 @@
 import fs, { readFile } from "fs";
 import util from "util";
-import xml2js from "xml2js";
 
 export default class FileUtil{
     
     constructor(){
         this.readFile = util.promisify(fs.readFile);
         this.writeFile = util.promisify(fs.writeFile);
-        this.parser = util.promisify(new xml2js.Parser().parseString);
+        this.mkdir = util.promisify(fs.mkdir);
+        this.unlink = util.promisify(fs.unlink);
     }
 
     async read(file){
         try {
-            console.log(file);
+            console.log("Reading file " + file);
             return await this.readFile(file, "utf8");
         } catch (error) {
             console.log("An error ocurred when reading file.");
@@ -21,9 +21,12 @@ export default class FileUtil{
         }
     }
 
-    async write(file){
+    async write(file, data){
         try {
-            return await this.readFile(file, "utf8");
+            console.log("Writing file " + file);
+            if (fs.existsSync(file)) console.log("File " + file + " already exists");
+            if (fs.existsSync(file)) return "ok";
+            return await this.writeFile(file, data, "utf8");
         } catch (error) {
             console.log("An error ocurred when writing the file.");
             console.log(error);
@@ -31,25 +34,27 @@ export default class FileUtil{
         }
     }
 
-    async parseXML(xml){
+    async create(folder){
         try {
-            let minusculas = xml.toLowerCase();
-            let xmlTratado = minusculas.replaceAll("nº", "numero").replaceAll(".", "").replaceAll(",", ".").replaceAll("-", "").trim();
-            return await this.parser(xmlTratado);
+
+            console.log("Creating folder " + folder);
+            if (!fs.existsSync(folder)) console.log("Folder does not exists and will be created");
+            if (!fs.existsSync(folder)) return await this.mkdir(folder);
+            return "ok";
+            
         } catch (error) {
-            console.log("Error parsing the XML");
+            console.log("An error ocurred creating folder.");
             console.log(error);
             return null;
         }
     }
 
-    async parseJson(json){
+    async remove(file){
         try {
-            let builder = new xml2js.Builder();
-            let xml = builder.buildObject(this.groupChildren(json));
-            return xml;
+            console.log("Removing file " + file);
+            return await this.unlink(file);
         } catch (error) {
-            console.log("Error parsing the JSON");
+            console.log("An error ocurred removing a file.");
             console.log(error);
             return null;
         }

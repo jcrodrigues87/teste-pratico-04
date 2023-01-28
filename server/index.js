@@ -4,7 +4,7 @@ import Route from "./routes";
 import cors from "cors";
 
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 dotenv.config();
 
 app.use((req, res, next) => {

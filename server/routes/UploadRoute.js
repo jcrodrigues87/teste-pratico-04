@@ -19,6 +19,8 @@ export default class UploadRoute{
     async salvar(){
         try {
             this.app.post("/upload", this.upload.array("files"), async (req, res) => {
+
+                console.log(req);
                 
                 let id = req.body.id;
                 let basePath = path.join(__dirname, "..", "public", id);

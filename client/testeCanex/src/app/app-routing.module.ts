@@ -8,6 +8,8 @@ import { BuscaIdComponent } from './component/busca-id/busca-id.component';
 import { BuscaRazaoComponent } from './component/busca-razao/busca-razao.component';
 import { BuscaComponent } from './component/busca/busca.component';
 import { ClienteComponent } from './component/cliente/cliente.component';
+import { UploadComponent } from './component/upload/upload.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'cliente', pathMatch: 'full'},
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'busca-email', component: BuscaEmailComponent},
   { path: 'contato', component: ContatoComponent},
   { path: 'lista-contato', component: ListaContatoComponent},
+  { path: 'upload', component: UploadComponent},
 ];
 
 @NgModule({

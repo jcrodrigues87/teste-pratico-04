@@ -16,6 +16,7 @@ import { BuscaRazaoComponent } from './component/busca-razao/busca-razao.compone
 import { BuscaEmailComponent } from './component/busca-email/busca-email.component';
 import { ContatoComponent } from './component/contato/contato.component';
 import { ListaContatoComponent } from './component/lista-contato/lista-contato.component';
+import { UploadComponent } from './component/upload/upload.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -30,6 +31,7 @@ registerLocaleData(localePt, 'pt');
     BuscaEmailComponent,
     ContatoComponent,
     ListaContatoComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

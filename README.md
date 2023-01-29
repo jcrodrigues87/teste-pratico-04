@@ -44,3 +44,44 @@ Você deve desenvolver uma pequena aplicação WEB utilizando a linguagem de pro
 * Commits com mensagens claras;
 * Executar a aplicação em containers Docker;
 * Setup da aplicação em apenas um comando ou um script que facilite esse setup;
+
+## Pré-requisitos
+
+	- Node.JS: https://nodejs.org/en/download/
+	- MySQL: https://www.mysql.com/downloads/
+	- Crie um novo banco de dados com o nome "canex". Comando: "CREATE DATABASE canex;"
+
+## Passo a passo
+
+    - Iniciando o servidor
+
+	- Abra um terminal e vá até a pasta "server"
+	- Digite "npm install" e dê enter para instalar todas as dependências
+	- Renomeie o arquivo "env.example" para ".env" e altere os parâmetros conforme necessário
+	- Digite "npm start" para iniciar o servidor
+    - Automaticamente o banco de dados já será criado
+
+    - Iniciando o cliente
+
+    - Abra um terminal e vá até a pasta "client"
+    - Digite "npm install" e dê enter para instalar todas as dependências
+    - Digite "ng serve" para que os arquivos sejam compilados e um servidor web seja disponibilizado
+    - Abra o navegador na URL http://localhost:4200
+
+## Lista de URL do frontend
+
+    - Inclusão de prestadores: (http://localhost:4200/cliente)
+    - Lista de prestadores: (http://localhost:4200/busca)
+    - Lista prestador por CNPJ: (http://localhost:4200/busca-cnpj)
+    - Lista prestador por Razão Social: (http://localhost:4200/busca-razao)
+    - Lista prestador por E-mail: (http://localhost:4200/busca-email)
+    - Inclusão de contato: (http://localhost:4200/contato)
+    - Lista de contatos: (http://localhost:4200/lista-contato)
+    - Upload de documentos: (http://localhost:4200/upload)
+
+## Observações gerais
+	- O CORS está habilitado para funcionar com o frontend desenvolvido
+## Contatos:
+
+	- Telefone (WhatsApp): (37) 9-9943-5990
+	- Email: matheusfelipemiranda1@gmail.com

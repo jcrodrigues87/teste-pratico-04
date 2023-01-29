@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eumatheusreal/testeEddyData.git"
+    "url": "git+https://github.com/eumatheusreal/testeCanex.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eumatheusreal/testeEddyData/issues"
+    "url": "https://github.com/eumatheusreal/testeCanex/issues"
   },
-  "homepage": "https://github.com/eumatheusreal/testeEddyData#readme",
+  "homepage": "https://github.com/eumatheusreal/testeCanex#readme",
   "devDependencies": {
     "nodemon": "^2.0.20",
     "sucrase": "^3.28.0"

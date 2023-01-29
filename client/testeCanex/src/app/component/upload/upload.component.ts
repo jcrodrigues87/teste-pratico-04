@@ -17,7 +17,6 @@ export class UploadComponent implements OnInit {
   constructor(private service: UploadService) { }
 
   ngOnInit(): void {
-
   }
 
   onFileSelect(event: any) {
@@ -40,10 +39,10 @@ export class UploadComponent implements OnInit {
 
     this.service.salvar(formData).subscribe(
       result => {
-        this.mostraMensagem("Arquivo enviado corretamente!", "success")
+        this.mostraMensagem("Arquivo(s) enviado(s) corretamente!", "success")
       },
       error => {
-        this.mostraMensagem("Não foi possível enviar o arquivo", "danger");
+        this.mostraMensagem("Não foi possível enviar o(s) arquivo(s)", "danger");
         console.log(error);
       }
     );

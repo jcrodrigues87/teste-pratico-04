@@ -1,6 +1,5 @@
 import formidable from "formidable";
 import path from "path";
-import fs from "fs";
 import multer from "multer";
 import FileUtil from "../util/FileUtil";
 
@@ -8,7 +7,7 @@ export default class UploadRoute{
 
     constructor(app){
         this.app = app;
-        this.upload = multer({dest: path.join(__dirname, "..", "public")});
+        this.upload = multer();
         this.fileUtil = new FileUtil();
     }
 

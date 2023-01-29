@@ -1,5 +1,7 @@
 import Database from "../database/index";
 import Prestador from "../models/index";
+import multer from "multer";
+import path from "path";
 
 export default class ClientRoute{
 
@@ -8,6 +10,7 @@ export default class ClientRoute{
         this.database = new Database();
         this.connectDatabase();
         this.prestador = null;
+        this.upload = multer().none();
     }
 
     init(){
@@ -18,9 +21,11 @@ export default class ClientRoute{
 
     async insert(){
 
-        this.app.post("/prestador", async (req, res) => {
+        this.app.post("/prestador", this.upload, async (req, res) => {
 
             let dataAbertura = new Date();
+
+            console.log(req.body);
 
             const {
                 cnpj,
@@ -63,7 +68,7 @@ export default class ClientRoute{
     }
 
     async update(){
-        this.app.put("/prestador/alterar", async (req, res) => {
+        this.app.put("/prestador/alterar", this.upload, async (req, res) => {
 
             let dataAbertura = new Date();
 
@@ -109,7 +114,7 @@ export default class ClientRoute{
     }
 
     async delete(){
-        this.app.put("/prestador/excluir", async (req, res) => {
+        this.app.put("/prestador/excluir", this.upload, async (req, res) => {
 
             let dataAbertura = new Date();
 

@@ -1,5 +1,6 @@
 import Database from "../database/index";
 import ContatoModel from "../models/ContatoModel";
+import multer from "multer";
 
 export default class ContatoRoute{
 
@@ -12,22 +13,25 @@ export default class ContatoRoute{
     }
 
     init(){
+        this.upload = multer().none();
         this.salvar();
         this.listar();
     }
 
     async salvar(){
 
-        this.app.post("/contato/incluir", async (req, res) => {
+        this.app.post("/contato/incluir", this.upload, async (req, res) => {
 
 
             let {id, contador, departamento, email} = req.body;
+            let prestadorId = 0;
 
             if (id === "" || contador === "" || departamento === "" || email === "") return res.status(400).json({message: "fill all the required fields"});
             if (id === null || contador === null || departamento === null || email === null) return res.status(400).json({message: "fill all the required fields"});
 
             try {
-                this.contato = new ContatoModel(id, contador, departamento, email);
+                prestadorId = parseInt(id);
+                this.contato = new ContatoModel(prestadorId, contador, departamento, email);
                 const savedContato = await this.database.saveContato(this.contato);
                 if (savedContato === null) return res.status(400).json({message: "Cannot save your contato."});
                 return res.json(savedContato);
@@ -42,7 +46,7 @@ export default class ContatoRoute{
     }
 
     async listar(){
-        this.app.post("/contato/listar", async (req, res) => {
+        this.app.post("/contato/listar", this.upload, async (req, res) => {
 
             let id = req.body.id;
 

@@ -40,10 +40,16 @@
       <input type="text" name="endereco" id="endereco" [(ngModel)]="endereco" class="form-control">
     </div>
 
-    <!-- <div class="mb-3">
-      <label for="formFile" class="form-label">Escolha o(s) documento(s) para upload</label>
-      <input (change)="upload($event)" class="form-control" type="file" id="formFile" multiple>
-    </div> -->
+    <div class="mb-3">
+      <div class="mb-3">
+        <label for="files" class="form-label"> Selecione o(s) documento(s) </label>
+        <input type="file" name="files" id="files" class="form-control" (change)="onFileSelect($event)" multiple>
+      </div>
+      <div class="mb-3">
+        <button (click)="upload()" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+
 
     <button type="submit" class="btn btn-primary" (click)="salvar()">Cadastrar</button>
     <button class="btn btn-warning" (click)="alterar()">Alterar</button>

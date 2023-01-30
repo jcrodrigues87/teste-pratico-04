@@ -2,6 +2,7 @@ import { BuscaCepService } from './../../service/busca-cep.service';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente.model';
+import { UploadService } from 'src/app/service/upload.service';
 
 @Component({
   selector: 'app-cliente',
@@ -32,9 +33,9 @@ export class ClienteComponent implements OnInit {
     siafi: ""
   };
 
-  fileName = '';
+  selectedFiles: any[] = [];
 
-  constructor(private service: ClienteService, private busca: BuscaCepService) {}
+  constructor(private service: ClienteService, private busca: BuscaCepService, private uploadService: UploadService) {}
 
   ngOnInit() {
     this.testar();
@@ -145,6 +146,35 @@ export class ClienteComponent implements OnInit {
 
   }
 
-  upload(event){}
+  upload(){
+
+    const formData = new FormData();
+
+    formData.append("id", this.cnpj);
+
+    this.selectedFiles.forEach(file => {
+      formData.append("files", file, file.name);
+    });
+
+    formData.forEach((value, key) => {console.log(key + " = " + value)});
+
+    this.uploadService.salvar(formData).subscribe(
+      result => {
+        this.mostraMensagem("Arquivo(s) enviado(s) corretamente!", "success")
+      },
+      error => {
+        this.mostraMensagem("Não foi possível enviar o(s) arquivo(s)", "danger");
+        console.log(error);
+      }
+    );
+  }
+
+  onFileSelect(event: any){
+
+    for (let i = 0; i < event.target.files.length; i++){
+      let file = event.target.files[i];
+      this.selectedFiles.push(file);
+    }
+  }
 
 }

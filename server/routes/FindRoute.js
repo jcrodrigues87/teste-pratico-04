@@ -1,4 +1,5 @@
 import Database from "../database/index";
+import multer from "multer";
 
 export default class FindRoute{
 
@@ -9,6 +10,7 @@ export default class FindRoute{
     }
 
     async init(){
+        this.upload = multer().none();
         this.findById();
         this.findByCnpj();
         this.findByRazao();
@@ -17,7 +19,7 @@ export default class FindRoute{
     }
 
     async findById(){
-        this.app.post("/find/id", async (req, res) => {
+        this.app.post("/find/id", this.upload, async (req, res) => {
             
             const id = req.body.id;
 
@@ -45,7 +47,7 @@ export default class FindRoute{
     }
 
     async findByCnpj(){
-        this.app.post("/find/cnpj", async (req, res) => {
+        this.app.post("/find/cnpj", this.upload, async (req, res) => {
             const cnpj = req.body.cnpj;
 
             try {
@@ -71,7 +73,7 @@ export default class FindRoute{
     }
 
     async findByRazao(){
-        this.app.post("/find/razao", async (req, res) => {
+        this.app.post("/find/razao", this.upload, async (req, res) => {
             const razao = req.body.razao;
 
             try {
@@ -97,7 +99,7 @@ export default class FindRoute{
     }
 
     async findByEmail(){
-        this.app.post("/find/email", async (req, res) => {
+        this.app.post("/find/email", this.upload, async (req, res) => {
             const email = req.body.email;
 
             try {
@@ -123,7 +125,7 @@ export default class FindRoute{
     }
 
     async find(){
-        this.app.post("/find", async (req, res) => {
+        this.app.post("/find", this.upload, async (req, res) => {
             
             try {
                 if (this.connectDatabase() == null) return res.status(500).send("Cannot complete your request. Try again later.")

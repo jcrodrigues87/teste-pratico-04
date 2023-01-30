@@ -1,7 +1,6 @@
 import Database from "../database/index";
 import Prestador from "../models/index";
 import multer from "multer";
-import path from "path";
 
 export default class ClientRoute{
 

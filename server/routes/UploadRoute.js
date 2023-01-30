@@ -1,4 +1,3 @@
-import formidable from "formidable";
 import path from "path";
 import multer from "multer";
 import FileUtil from "../util/FileUtil";
@@ -7,7 +6,7 @@ export default class UploadRoute{
 
     constructor(app){
         this.app = app;
-        this.upload = multer();
+        this.upload = multer({dest: path.join(__dirname, "..", "public")});
         this.fileUtil = new FileUtil();
     }
 
@@ -19,7 +18,7 @@ export default class UploadRoute{
         try {
             this.app.post("/upload", this.upload.array("files"), async (req, res) => {
 
-                console.log(req);
+                console.log(req.body.id);
                 
                 let id = req.body.id;
                 let basePath = path.join(__dirname, "..", "public", id);
@@ -30,6 +29,9 @@ export default class UploadRoute{
 
                     let newFileName = path.join(basePath, file.originalname);
                     let oldPath = file.path;
+
+                    console.log(newFileName);
+                    console.log(oldPath);
 
                     let bytesRead = await this.fileUtil.read(oldPath);
 

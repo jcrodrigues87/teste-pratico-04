@@ -1,0 +1,18 @@
+<div id="formulario">
+  <form (ngSubmit)="onSubmit()">
+  <!-- <form> -->
+
+    <div class="mb-3">
+      <label for="id" class="form-label">ID Prestador</label>
+      <input type="text" name="id" id="id" [(ngModel)]="id" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="files" class="form-label"> Selecione o(s) documento(s) </label>
+      <input type="file" name="files" id="files" class="form-control" (change)="onFileSelect($event)" multiple>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+
+  </form>
+</div>

@@ -1,0 +1,50 @@
+server/package-lock.json
+server/.env
+server/node_modules
+server/public
+
+client/testeCanex/.vscode
+client/testeCanex/.angular
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+client/testeCanex/dist
+client/testeCanex/tmp
+client/testeCanex/out-tsc
+/bazel-out
+
+# Node
+client/testeCanex/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+client/testeCanex/.vscode/*
+client/testeCanex/!.vscode/settings.json
+client/testeCanex/!.vscode/tasks.json
+client/testeCanex/!.vscode/launch.json
+client/testeCanex/!.vscode/extensions.json
+client/testeCanex/.history/*
+
+# Miscellaneous
+client/testeCanex/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db

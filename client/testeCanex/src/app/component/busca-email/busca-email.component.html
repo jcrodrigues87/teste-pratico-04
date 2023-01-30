@@ -1,0 +1,42 @@
+<div *ngIf="clientes.length == 0; else temCliente">
+  <form (ngSubmit)="pesquisar()">
+    <div class="mb-3">
+      <label for="email">E-mail</label>
+      <input type="text" name="email" id="email" [(ngModel)]="email" class="form-control">
+    </div>
+    <button class="btn btn-primary">Pesquisar</button>
+  </form>
+</div>
+
+<ng-template #temCliente>
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">CNPJ</th>
+        <th scope="col">Razão Social</th>
+        <th scope="col">Data de Abertura</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">CEP</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Data Criação</th>
+        <th scope="col">Última modificação</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td scope="row">{{cliente?.id}}</td>
+          <td scope="row">{{cliente?.cnpj}}</td>
+          <td scope="row">{{cliente?.razao}}</td>
+          <td scope="row">{{cliente?.dataAbertura | date:"short" }}</td>
+          <td scope="row">{{cliente?.telefone}}</td>
+          <td scope="row">{{cliente?.email}}</td>
+          <td scope="row">{{cliente?.cep}}</td>
+          <td scope="row">{{cliente?.endereco}}</td>
+          <td scope="row">{{cliente?.createdAt | date:"short"}}</td>
+          <td scope="row">{{cliente?.updatedAt | date:"short" }}</td>
+        </tr>
+    </tbody>
+  </table>
+</ng-template>

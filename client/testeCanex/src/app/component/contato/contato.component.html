@@ -1,0 +1,27 @@
+<div id="formulario">
+  <form>
+
+    <div class="mb-3">
+      <label for="prestadorId" class="form-label">ID Prestador</label>
+      <input type="text" name="prestadorId" id="prestadorId" [(ngModel)]="prestadorId" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="contador" class="form-label">Contador</label>
+      <input type="text" name="contador" id="contador" [(ngModel)]="contador" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="departamento" class="form-label">Departamento</label>
+      <input type="text" name="departamento" id="departamento" [(ngModel)]="departamento" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input type="text" name="email" id="email" [(ngModel)]="email" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="salvar()">Cadastrar</button>
+
+  </form>
+</div>

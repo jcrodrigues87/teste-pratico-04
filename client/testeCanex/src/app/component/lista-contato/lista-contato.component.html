@@ -1,8 +1,8 @@
 <div *ngIf="contatos.length == 0; else temContato">
   <form (ngSubmit)="pesquisar()">
     <div class="mb-3">
-      <label for="id">ID Prestador</label>
-      <input type="text" name="id" id="id" [(ngModel)]="id" class="form-control">
+      <label for="email">Email Prestador</label>
+      <input type="text" name="email" id="id" [(ngModel)]="email" class="form-control">
     </div>
     <button class="btn btn-primary">Pesquisar</button>
   </form>

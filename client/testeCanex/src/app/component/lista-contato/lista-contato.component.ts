@@ -8,7 +8,7 @@ import { ContatoService } from 'src/app/service/contato.service';
 })
 export class ListaContatoComponent implements OnInit {
 
-  id: string;
+  email: string;
   contatos: any[] = [];
 
   constructor(private service: ContatoService) { }
@@ -17,13 +17,13 @@ export class ListaContatoComponent implements OnInit {
   }
 
   pesquisar(): void{
-    this.service.listar(this.id).subscribe(
+    this.service.listar(this.email).subscribe(
       resultado => {
         this.contatos = resultado;
       },
       erro => {
         console.log(erro);
-        this.mostraMensagem("Nenhum contato foi encontrado com o ID informado", "danger");
+        this.mostraMensagem("Nenhum contato foi encontrado com o e-mail informado", "danger");
       }
     );
   }

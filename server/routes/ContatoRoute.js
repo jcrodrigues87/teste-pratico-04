@@ -48,12 +48,12 @@ export default class ContatoRoute{
     async listar(){
         this.app.post("/contato/listar", this.upload, async (req, res) => {
 
-            let id = req.body.id;
+            let email = req.body.email;
 
-            if (id === null || id === "") return res.status(400).json({message: "fill all the required fields"});
+            if (email === null || email === "") return res.status(400).json({message: "fill all the required fields"});
 
             try {
-                let returnedContacts = await this.database.getContatos(id);
+                let returnedContacts = await this.database.getContatos(email);
                 console.log("Returned rows: ", returnedContacts.length);
                 return res.json(returnedContacts);
             } catch (error) {

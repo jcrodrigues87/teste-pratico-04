@@ -64,20 +64,20 @@ Você deve desenvolver uma pequena aplicação WEB utilizando a linguagem de pro
     - Iniciando o cliente
 
     - Abra um terminal e vá até a pasta "client"
+    - Digite npm install -g @angular/cli
     - Digite "npm install" e dê enter para instalar todas as dependências
     - Digite "ng serve" para que os arquivos sejam compilados e um servidor web seja disponibilizado
     - Abra o navegador na URL http://localhost:4200
 
 ## Lista de URL do frontend
 
-    - Inclusão de prestadores: (http://localhost:4200/cliente)
-    - Lista de prestadores: (http://localhost:4200/busca)
-    - Lista prestador por CNPJ: (http://localhost:4200/busca-cnpj)
-    - Lista prestador por Razão Social: (http://localhost:4200/busca-razao)
-    - Lista prestador por E-mail: (http://localhost:4200/busca-email)
-    - Inclusão de contato: (http://localhost:4200/contato)
-    - Lista de contatos: (http://localhost:4200/lista-contato)
-    - Upload de documentos: (http://localhost:4200/upload)
+    - [Inclusão de prestadores]: (http://localhost:4200/cliente)
+    - [Lista de prestadores]: (http://localhost:4200/busca)
+    - [Lista prestador por CNPJ]: (http://localhost:4200/busca-cnpj)
+    - [Lista prestador por Razão Social]: (http://localhost:4200/busca-razao)
+    - [Lista prestador por E-mail]: (http://localhost:4200/busca-email)
+    - [Inclusão de contato]: (http://localhost:4200/contato)
+    - [Lista de contatos]: (http://localhost:4200/lista-contato)
 
 ## Observações gerais
 	- O CORS está habilitado para funcionar com o frontend desenvolvido

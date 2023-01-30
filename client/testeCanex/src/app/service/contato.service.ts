@@ -17,10 +17,10 @@ export class ContatoService {
     return this.listaContatos;
   }
 
-  listar(id: string){
+  listar(email: string){
     let method = this.url + "/contato/listar";
     let formData = new FormData();
-    formData.append("id", id);
+    formData.append("email", email);
     return this.httpClient.post<Contato[]>(method, formData);
   }
 

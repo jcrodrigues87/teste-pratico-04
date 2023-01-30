@@ -90,12 +90,9 @@ export default class Database{
     }
 
     async saveContato(contato){
-        // console.log(contato);
         try {
             this.contato = contato;
             let savedContato = await this.contatoModel.create(this.contato);
-            // return await this.contatoModel.create(this.contato);
-            // console.log(savedContato);
             return savedContato;
         } catch (error) {
             console.log("An error ocurred when trying to save the data.");
@@ -118,11 +115,11 @@ export default class Database{
         }
     }
 
-    async getContatos(prestadorId){
+    async getContatos(email){
         try {
             const returnedContato = await this.contatoModel.findAll({
                 where: {
-                    prestadorId
+                    email
                 }
             });
             return returnedContato;

@@ -6,7 +6,5 @@
 //     name,
 //     email,
 //     departament,
-//   }: createProviderContact): Promise<Contacts> {
-
-//   }
+//   }: createProviderContact): Promise<Contacts> {}
 // }

@@ -9,8 +9,8 @@ export class listProviderRepositorie {
         contacts: true,
       },
     });
-    if (!allServicesProviders) {
-      throw new AppError("No Service Provider was found");
+    if (allServicesProviders.length < 1) {
+      throw new AppError("No Service Provider was found", 404);
     }
     return allServicesProviders;
   }

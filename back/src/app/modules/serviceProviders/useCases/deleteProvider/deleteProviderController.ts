@@ -5,12 +5,13 @@ const repositories = new deleteProviderRepositorie();
 
 export class deleteProviderController {
   async delete(req: Request, res: Response) {
-    const checkIfServiceProviderWasDeleted = await repositories.delete(
-      req.params.email
-    );
-    if (checkIfServiceProviderWasDeleted !== true) {
-      return res.status(400).json({ msg: "An error ocurred" });
+    try {
+      const checkIfServiceProviderWasDeleted = await repositories.delete(
+        req.params.email
+      );
+      return res.status(200).json({ msg: "service provider deleted" });
+    } catch (error) {
+      return res.send(error);
     }
-    return res.status(200).json({ msg: "service provider deleted" });
   }
 }

@@ -22,13 +22,14 @@ export class createProviderRepositorie {
 
     const existingProvider = await prisma.serviceProvider.findUnique({
       where: {
-        email: email,
+        email,
       },
     });
 
     if (existingProvider) {
       throw new AppError("this email is already in use");
     }
+
     const newServiceProvider = await prisma.serviceProvider.create({
       data: {
         cnpj,

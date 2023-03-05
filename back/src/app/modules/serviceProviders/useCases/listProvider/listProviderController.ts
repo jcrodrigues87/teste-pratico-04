@@ -5,10 +5,11 @@ const repositories = new listProviderRepositorie();
 
 export class listProviderController {
   async index(req: Request, res: Response) {
-    const servicesProviders = await repositories.findAll();
-    if (servicesProviders.length < 1) {
-      return res.status(404).json({ error: "serviceProviders not found" });
+    try {
+      const servicesProviders = await repositories.findAll();
+      return res.status(201).json(servicesProviders);
+    } catch (error) {
+      res.send(error);
     }
-    return res.status(201).json(servicesProviders);
   }
 }

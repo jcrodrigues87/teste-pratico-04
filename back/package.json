@@ -2,7 +2,7 @@
   "name": "backend-canex",
   "version": "1.0.0",
   "description": "backend for the canex test",
-  "main": "src/index.ts",
+  "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",

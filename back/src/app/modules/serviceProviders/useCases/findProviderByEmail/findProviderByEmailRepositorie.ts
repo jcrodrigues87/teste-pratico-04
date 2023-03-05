@@ -13,7 +13,7 @@ export class findProviderByEmailRepositorie {
       },
     });
     if (!serviceProviderByEmail) {
-      throw new AppError("this email is already in use");
+      throw new AppError("there isn't any provider with this email", 404);
     }
 
     return serviceProviderByEmail;

@@ -1,3 +1,4 @@
+import { AppError } from "../../../../error/appError";
 import { prisma } from "../../../../prisma/prismaClient";
 
 export class deleteProviderRepositorie {
@@ -9,7 +10,7 @@ export class deleteProviderRepositorie {
     });
 
     if (!serviceProviderExists) {
-      return false;
+      throw new AppError("This provider wasn't found", 404);
     }
     const deleteContacts = prisma.serviceProvider.update({
       where: {

@@ -6,13 +6,13 @@ const repositories = new updateProviderRepositorie();
 export class updateProviderController {
   async update(req: Request, res: Response) {
     try {
-      const checkIfServiceProviderWasUpdated = await repositories.update(
+      const serviceProvicerUpdated = await repositories.update(
         req.params.email,
         req.body
       );
-      return res.status(200).json({ msg: "service provider updated" });
+      return res.status(200).json(serviceProvicerUpdated);
     } catch (error) {
-      res.send(error);
+      return res.send(error);
     }
   }
 }

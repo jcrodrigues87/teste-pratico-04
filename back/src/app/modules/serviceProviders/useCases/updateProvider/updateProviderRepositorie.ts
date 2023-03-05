@@ -1,9 +1,10 @@
 import { updateProvider } from "../../dtos/updateProviderDTO";
 import { prisma } from "../../../../prisma/prismaClient";
 import { AppError } from "../../../../error/appError";
+import { ServiceProvider } from "@prisma/client";
 
 export class updateProviderRepositorie {
-  async update(email: string, data: updateProvider): Promise<boolean> {
+  async update(email: string, data: updateProvider): Promise<ServiceProvider> {
     const serviceProviderExists = await prisma.serviceProvider.findUnique({
       where: {
         email,
@@ -19,6 +20,6 @@ export class updateProviderRepositorie {
       },
       data,
     });
-    return true;
+    return updatedServiceProvider;
   }
 }

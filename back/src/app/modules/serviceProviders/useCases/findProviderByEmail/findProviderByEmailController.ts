@@ -9,7 +9,7 @@ export class findProviderByEmailController {
       const servicerProvider = await repositories.findByEmail(req.params.email);
       return res.status(200).json(servicerProvider);
     } catch (error) {
-      res.send(error);
+      return res.send(error);
     }
   }
 }

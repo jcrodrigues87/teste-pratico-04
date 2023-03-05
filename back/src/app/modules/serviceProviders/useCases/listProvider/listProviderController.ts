@@ -9,7 +9,7 @@ export class listProviderController {
       const servicesProviders = await repositories.findAll();
       return res.status(201).json(servicesProviders);
     } catch (error) {
-      res.send(error);
+      return res.send(error);
     }
   }
 }

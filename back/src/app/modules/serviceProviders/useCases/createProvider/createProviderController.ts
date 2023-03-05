@@ -8,7 +8,7 @@ export class createProviderController {
       const createServiceProvider = await repositories.create(req.body);
       return res.status(200).json(createServiceProvider);
     } catch (error) {
-      res.status(400).json(error);
+      return res.status(400).json(error);
     }
   }
 }

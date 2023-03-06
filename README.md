@@ -1,3 +1,71 @@
+# Informações para rodar o sistema
+
+* Tenha o SGBD mySQL instalado no computador
+* Tenha o Spring Tools Suite instalado
+* Tenha o VSCODE instalado
+* Tenha o NodeJS instalado
+* Criar um banco de dados com o nome 'prestadores_servico' e o selecionar para rodar os próximos script
+
+	script: create database prestadores_servico;  
+	script: use prestadores_servico;
+
+* Criar as tabelas das entidades na ordem a seguir:
+
+		CREATE TABLE `endereco` (
+		  `id_endereco` int NOT NULL AUTO_INCREMENT,
+		  `cep` char(8) NOT NULL,
+		  `logradouro` varchar(50) NOT NULL,
+		  `bairro` varchar(50) NOT NULL,
+		  `cidade` varchar(50) NOT NULL,
+		  `numero` varchar(7) NOT NULL,
+		  `uf` char(2) NOT NULL,
+		  `pais` varchar(50) NOT NULL,
+		  `complemento` varchar(20) DEFAULT NULL,
+		  PRIMARY KEY (`id_endereco`)
+		)ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+		CREATE TABLE `prestador_servico` (
+		  `cnpj` char(14) NOT NULL,
+		  `razao_social` varchar(30) NOT NULL,
+		  `data_abertura` date NOT NULL,
+		  `telefone` char(11) DEFAULT NULL,
+		  `email` varchar(100) DEFAULT NULL,
+		  `fk_id_endereco` int DEFAULT NULL,
+		  PRIMARY KEY (`cnpj`),
+		  KEY `prestador_servico_ibfk_1` (`fk_id_endereco`),
+		  CONSTRAINT `prestador_servico_ibfk_1` FOREIGN KEY (`fk_id_endereco`) REFERENCES `endereco` (`id_endereco`) ON DELETE CASCADE ON UPDATE CASCADE
+		)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+		CREATE TABLE `contato` (
+		  `email` varchar(100) NOT NULL,
+		  `nome` varchar(60) NOT NULL,
+		  `departamento` varchar(20) DEFAULT NULL,
+		  `fk_cnpj_prestador_servico` char(14) DEFAULT NULL,
+		  PRIMARY KEY (`email`),
+		  KEY `fk_cnpj_prestador_servico` (`fk_cnpj_prestador_servico`),
+		  CONSTRAINT `contato_ibfk_1` FOREIGN KEY (`fk_cnpj_prestador_servico`) REFERENCES `prestador_servico` (`cnpj`)
+		)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+* Instalar o vuejs3 via CLI:
+
+No VSCODE digite (Ctrl + ") para abrir o terminal
+
+  execute o comando abaixo: 
+
+    npm install -g @vue/cli
+
+* No repositório teste-pratico-04
+* Abrir a pasta 'prestador-servico-back' no Spring Tools Suite
+* Abrir a pasta 'prestador-servico-front' no VSCODE
+* No Spring Tools Suite na aba 'Boot Dashboard' clique uma vez no nome do projeto prestador-servico-back' e clique no 1º ícone quadrado
+com uma seta verde ou digite 'Ctrl + Alt + Shift + B, R' para startar a API do sistema
+
+* No VSCODE digite (Ctrl + ") para abrir o terminal e execute o comando npm install
+* No terminal digite 'npm run serve' para subir o servidor da aplicação 
+* Quando a aplicação estiver carregada aparecerá um link indicando o servidor onde a aplicação subiu
+* Segure a tecla 'Ctrl' e clique com o mouse sobre o link
+* Nesse momento você estará dentro da aplicação e poderá usá-la
+
 # Teste Prático
 
 O objetivo deste teste é conhecer suas habilidades em:

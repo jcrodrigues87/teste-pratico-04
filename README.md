@@ -54,10 +54,10 @@ No VSCODE digite (Ctrl + ") para abrir o terminal
 
     npm install -g @vue/cli
 
-* Clonar os repositórios 'prestador-back' e 'prestador-front'
-* Abrir a pasta 'prestadorDeServico' do repositório 'prestador-back' no Spring Tools Suite
-* Abrir a pasta 'prestadores-servico' do repositório 'prestador-front' no VSCODE
-* No Spring Tools Suite na aba 'Boot Dashboard' clique uma vez no nome do projeto 'prestadorDeServico' e clique no 1º ícone quadrado
+* No repositório teste-pratico-04
+* Abrir a pasta 'prestador-servico-back' no Spring Tools Suite
+* Abrir a pasta 'prestador-servico-front' no VSCODE
+* No Spring Tools Suite na aba 'Boot Dashboard' clique uma vez no nome do projeto prestador-servico-back' e clique no 1º ícone quadrado
 com uma seta verde ou digite 'Ctrl + Alt + Shift + B, R' para startar a API do sistema
 
 * No VSCODE digite (Ctrl + ") para abrir o terminal

@@ -9,8 +9,6 @@ interface ModalProps {
 }
 
 export function InformationModal(props: ModalProps) {
-  const openingDate = props.provider?.opening_date;
-  const openingDateConverted = openingDate?.toISOString;
   if (props.show != true) {
     return null;
   }
@@ -29,6 +27,7 @@ export function InformationModal(props: ModalProps) {
               <p>Email: {props.provider?.email}</p>
               <p>Telefone: {props.provider?.phone}</p>
               <p>Endereço: {props.provider?.address}</p>
+              <p>Data abertura: {props.provider?.opening_date}</p>
             </li>
           </ul>
           <ul className="modal-list">
@@ -37,7 +36,7 @@ export function InformationModal(props: ModalProps) {
               <li className="modal-item">
                 <p>{contact.name}</p>
                 <p>{contact.email}</p>
-                <p>{contact.provider_id}</p>
+                <p>{contact.departament}</p>
               </li>
             ))}
           </ul>

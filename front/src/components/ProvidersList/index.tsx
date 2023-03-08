@@ -5,10 +5,11 @@ import { InformationModal } from "../InformationModal";
 import { useState } from "react";
 
 interface providerTypes {
-  providers: providerType[];
+  providers?: providerType[];
+  filteredProvider?: providerType;
 }
 
-export function ProviderList({ providers }: providerTypes) {
+export function ProviderList({ providers, filteredProvider }: providerTypes) {
   const [actualProvider, setActualProvider] = useState<providerType>();
   const [modalState, setModalState] = useState(false);
 
@@ -19,16 +20,16 @@ export function ProviderList({ providers }: providerTypes) {
 
   return (
     <section className="">
-      <ul className="provider-list">
-        {providers.map((provider, index) => (
+      {filteredProvider ? (
+        <ul className="provider-list">
           <>
             <li
               className="provider-item"
-              onClick={() => handleClick(provider)}
+              onClick={() => handleClick(filteredProvider)}
             >
               <div className="informations">
-                <h1>{provider.corporate_name}</h1>
-                <p>telefone: {provider.phone}</p>
+                <h1>{filteredProvider.corporate_name}</h1>
+                <p>telefone: {filteredProvider.phone}</p>
               </div>
               <div className="buttons">
                 <button>delete</button>
@@ -36,8 +37,28 @@ export function ProviderList({ providers }: providerTypes) {
               </div>
             </li>
           </>
-        ))}
-      </ul>
+        </ul>
+      ) : (
+        <ul className="provider-list">
+          {providers?.map((provider, index) => (
+            <>
+              <li
+                className="provider-item"
+                onClick={() => handleClick(provider)}
+              >
+                <div className="informations">
+                  <h1>{provider.corporate_name}</h1>
+                  <p>telefone: {provider.phone}</p>
+                </div>
+                <div className="buttons">
+                  <button>delete</button>
+                  <button>edit</button>
+                </div>
+              </li>
+            </>
+          ))}
+        </ul>
+      )}
       <InformationModal
         provider={actualProvider}
         show={modalState}

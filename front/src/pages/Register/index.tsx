@@ -46,6 +46,7 @@ export const Register = () => {
         corporate_name,
         phone,
         email,
+        opening_date: openingDate,
         zip_code: cep,
         address: `${street}, ${number}, ${district}, ${city}, ${state}`,
         contacts: contacts,
@@ -210,15 +211,16 @@ export const Register = () => {
               Add Contact
             </button>
           </div>
-          <div></div>
+          <div>
+            <button
+              className="sendo-informations"
+              onClick={() => sendProviderInformation()}
+            >
+              Enviar Informaçoes
+            </button>
+          </div>
         </div>
       </div>
-      <button
-        className="sendo-informations"
-        onClick={() => sendProviderInformation()}
-      >
-        Enviar Informaçoes
-      </button>
     </div>
   );
 };

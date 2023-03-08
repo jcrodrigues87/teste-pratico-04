@@ -1,0 +1,35 @@
+.container {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.general-informations {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.address-informations {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+  }
+}

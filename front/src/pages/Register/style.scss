@@ -1,0 +1,85 @@
+.container {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.general-informations {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.address-informations {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.contacts-information {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 0.5rem;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  button {
+    width: 5rem;
+    height: 2rem;
+    color: white;
+    border-radius: 0.6rem;
+    background-color: gray;
+  }
+}
+
+.contact-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: black;
+  font-weight: lighter;
+  list-style: none;
+}
+
+.sendo-informations {
+  width: 5rem;
+  height: 2rem;
+  color: white;
+  border-radius: 0.6rem;
+  background-color: gray;
+  box-sizing: content-box;
+}

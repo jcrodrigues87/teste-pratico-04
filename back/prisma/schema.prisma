@@ -14,7 +14,7 @@ model ServiceProvider {
   id             Int        @id @default(autoincrement())
   cnpj           String     @unique
   corporate_name String
-  opening_date   DateTime   @default(now())
+  opening_date   String
   phone          String     @unique
   email          String     @unique
   zip_code       String

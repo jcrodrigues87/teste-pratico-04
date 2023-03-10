@@ -1,14 +1,15 @@
-FROM node:16-alpine
+FROM node:16.13.1-alpine
 
-WORKDIR /app
+WORKDIR /usr/app/
 
-COPY package*.json ./
+COPY package.json .
+COPY yarn.lock .
 COPY prisma ./prisma/
 
-RUN yarn
+RUN yarn install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD [ "yarn",  "migrate"]
+CMD [ "yarn", "start:migrate" ]

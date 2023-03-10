@@ -80,7 +80,12 @@
     height: 2rem;
     color: white;
     border-radius: 0.6rem;
-    background-color: gray;
+    background-color: green;
+  }
+  button:hover {
+    background-color: rgb(9, 235, 9);
+    cursor: pointer;
+    color: white;
   }
 }
 
@@ -92,11 +97,22 @@
   list-style: none;
 }
 
-.sendo-informations {
+.error-message {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.send-informations {
   width: 5rem;
   height: 2rem;
-  color: white;
-  border-radius: 0.6rem;
-  background-color: gray;
+  color: black;
+  padding: 0.5rem;
   box-sizing: content-box;
+  border-radius: 0.6rem;
+  background-color: white;
+}
+
+.send-informations:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
 }

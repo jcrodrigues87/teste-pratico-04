@@ -23,6 +23,7 @@ export const Register = () => {
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactDepartament, setContactDepartament] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   function handleContactAdd(name: string, email: string, departament: string) {
@@ -40,19 +41,26 @@ export const Register = () => {
   }
 
   function sendProviderInformation() {
-    api
-      .post("/provider", {
-        cnpj,
-        corporate_name,
-        phone,
-        email,
-        opening_date: openingDate,
-        zip_code: cep,
-        address: `${street}, ${number}, ${district}, ${city}, ${state}`,
-        contacts: contacts,
-      })
-      .then(() => navigate("/"))
-      .catch((error) => console.log(error));
+    if (contacts.length === 0) {
+      setErrorMessage("Pelo menos um contato/ usuário deve ser cadastrado!");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    } else {
+      api
+        .post("/provider", {
+          cnpj,
+          corporate_name,
+          phone,
+          email,
+          opening_date: openingDate,
+          zip_code: cep,
+          address: `${street}, ${number}, ${district}, ${city}, ${state}`,
+          contacts: contacts,
+        })
+        .then(() => navigate("/"))
+        .catch((error) => console.log(error));
+    }
   }
 
   function setCepAndCallApi(cep: string) {
@@ -220,6 +228,7 @@ export const Register = () => {
                   onChange={(e) => setContactDepartament(e.target.value)}
                 />
                 <button
+                  className="send-informations"
                   onClick={() =>
                     handleContactAdd(
                       contactName,
@@ -232,14 +241,15 @@ export const Register = () => {
                 </button>
               </div>
               <div>
-                <button
-                  className="sendo-informations"
-                  onClick={() => sendProviderInformation()}
-                >
-                  Enviar Informaçoes
-                </button>
+                <p className="error-message">{errorMessage}</p>
               </div>
             </div>
+            <button
+              className="send-informations"
+              onClick={() => sendProviderInformation()}
+            >
+              Enviar Informaçoes
+            </button>
           </div>
         </div>
       </div>

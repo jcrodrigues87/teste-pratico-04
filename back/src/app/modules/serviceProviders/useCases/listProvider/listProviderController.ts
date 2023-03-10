@@ -7,6 +7,7 @@ export class listProviderController {
   async index(req: Request, res: Response) {
     try {
       const servicesProviders = await repositories.findAll();
+      console.log(servicesProviders);
       return res.status(201).json(servicesProviders);
     } catch (error) {
       return res.send(error);

@@ -19,7 +19,7 @@ export function ProviderList({ providers, filteredProvider }: providerTypes) {
   }
 
   return (
-    <section className="">
+    <section>
       {filteredProvider ? (
         <ul className="provider-list">
           <>
@@ -31,10 +31,6 @@ export function ProviderList({ providers, filteredProvider }: providerTypes) {
                 <h1>{filteredProvider.corporate_name}</h1>
                 <p>telefone: {filteredProvider.phone}</p>
               </div>
-              <div className="buttons">
-                <button>delete</button>
-                <button>edit</button>
-              </div>
             </li>
           </>
         </ul>
@@ -42,17 +38,12 @@ export function ProviderList({ providers, filteredProvider }: providerTypes) {
         <ul className="provider-list">
           {providers?.map((provider, index) => (
             <>
-              <li
-                className="provider-item"
-                onClick={() => handleClick(provider)}
-              >
+              <li className="provider-item">
                 <div className="informations">
-                  <h1>{provider.corporate_name}</h1>
+                  <h1 onClick={() => handleClick(provider)}>
+                    {provider.corporate_name}
+                  </h1>
                   <p>telefone: {provider.phone}</p>
-                </div>
-                <div className="buttons">
-                  <button>delete</button>
-                  <button>edit</button>
                 </div>
               </li>
             </>

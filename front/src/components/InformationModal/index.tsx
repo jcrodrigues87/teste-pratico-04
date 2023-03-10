@@ -1,6 +1,8 @@
 import { providerType } from "../../types/providerType";
 import { contactsType } from "../../types/contactType";
 import "./style.scss";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   provider: providerType | undefined;
@@ -9,8 +11,21 @@ interface ModalProps {
 }
 
 export function InformationModal(props: ModalProps) {
+  const navigate = useNavigate();
+
   if (props.show != true) {
     return null;
+  }
+
+  function handleDelete(email: string | undefined) {
+    api.delete(`/provider/${email}`).then(() => {
+      props.onClose();
+      window.location.reload();
+    });
+  }
+
+  function handleUpdate(email: string | undefined) {
+    api.put(`/provider/${email}`);
   }
 
   return (
@@ -22,7 +37,7 @@ export function InformationModal(props: ModalProps) {
         <div className="modal-body">
           <ul className="modal-list">
             <strong>Informações</strong>
-            <li className="modal-item">
+            <li className="modal-item provider">
               <p>CNPJ: {props.provider?.cnpj}</p>
               <p>Email: {props.provider?.email}</p>
               <p>Telefone: {props.provider?.phone}</p>
@@ -33,20 +48,26 @@ export function InformationModal(props: ModalProps) {
           <ul className="modal-list">
             <strong>Contatos</strong>
             {props.provider?.contacts.map((contact: contactsType) => (
-              <li className="modal-item">
-                <p>{contact.name}</p>
-                <p>{contact.email}</p>
-                <p>{contact.departament}</p>
+              <li className="modal-item contacts">
+                <strong className="name">{contact.name}</strong>
+                <p>Email: {contact.email}</p>
+                <p>Departamento: {contact.departament}</p>
               </li>
             ))}
           </ul>
         </div>
         <div className="modal-footer">
           <button
-            className=""
+            className="info-buttons close"
             onClick={props.onClose}
           >
             Close
+          </button>
+          <button
+            className="info-buttons delete"
+            onClick={() => handleDelete(props.provider?.email)}
+          >
+            delete
           </button>
         </div>
       </div>

@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: "canex_front"
+    ports:
+      - 5173:5173
+
+  api:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: "canex_api"
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@canex_postgres:5432/backend-canex?schema=public
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: canex_postgres
+    restart: always
+    volumes:
+      - db-data:/db/postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backend-canex
+    ports:
+      - 5432:5432
+
+volumes:
+  db-data:

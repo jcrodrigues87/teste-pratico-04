@@ -1,6 +1,7 @@
 section {
   width: 60%;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 3rem;
 }
 
 .provider-list {
@@ -13,7 +14,12 @@ section {
 .provider-item {
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin: 1rem;
 }
+
 .informations {
   padding: 1rem;
   width: 60%;

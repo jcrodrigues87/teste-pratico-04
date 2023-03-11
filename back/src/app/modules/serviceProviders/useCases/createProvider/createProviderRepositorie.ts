@@ -13,6 +13,7 @@ export class createProviderRepositorie {
     zip_code,
     address,
     contacts,
+    filesPath,
   }: createProvider): Promise<ServiceProvider> {
     const arrayContacts = contacts.map((contact) => ({
       name: contact.name,
@@ -39,6 +40,7 @@ export class createProviderRepositorie {
         email,
         zip_code,
         address,
+        filesPath,
         contacts: {
           createMany: {
             data: arrayContacts,

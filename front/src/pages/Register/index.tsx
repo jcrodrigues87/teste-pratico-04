@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { apiCep, api } from "../../services/api";
 import { contactsType } from "../../types/contactType";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,7 @@ export const Register = () => {
   const [contactEmail, setContactEmail] = useState("");
   const [contactDepartament, setContactDepartament] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fileList, setFileList] = useState<FileList | null>(null);
   const navigate = useNavigate();
 
   function handleContactAdd(name: string, email: string, departament: string) {
@@ -38,6 +39,10 @@ export const Register = () => {
     setContactName("");
     setContactEmail("");
     setContactDepartament("");
+  }
+
+  function handleFilesUpload(e: ChangeEvent<HTMLInputElement>) {
+    setFileList(e.target.files);
   }
 
   function sendProviderInformation() {
@@ -57,8 +62,27 @@ export const Register = () => {
           zip_code: cep,
           address: `${street}, ${number}, ${district}, ${city}, ${state}`,
           contacts: contacts,
+          filesPath: "",
         })
-        .then(() => navigate("/"))
+        .then(() => {
+          console.log("entrou na segunda req");
+          if (!fileList) {
+            return;
+          } else {
+            const files = fileList ? [...fileList] : [];
+            const data = new FormData();
+            files.forEach((file, i) => {
+              data.append("files", file);
+            });
+            api
+              .post(`/provider/upload/${email}`, data, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              })
+              .then(() => navigate("/"));
+          }
+        })
         .catch((error) => console.log(error));
     }
   }
@@ -239,6 +263,12 @@ export const Register = () => {
                 >
                   Add Contact
                 </button>
+                <input
+                  type="file"
+                  name="files"
+                  multiple
+                  onChange={handleFilesUpload}
+                />
               </div>
               <div>
                 <p className="error-message">{errorMessage}</p>

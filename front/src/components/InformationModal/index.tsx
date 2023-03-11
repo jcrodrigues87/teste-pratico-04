@@ -3,9 +3,13 @@ import { contactsType } from "../../types/contactType";
 import "./style.scss";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { documentType } from "../../types/documentType";
 
 interface ModalProps {
   provider: providerType | undefined;
+  documents: Array<documentType> | undefined;
   show: boolean;
   onClose: () => void;
 }
@@ -17,15 +21,17 @@ export function InformationModal(props: ModalProps) {
     return null;
   }
 
+  function handleDocumentClick(filename: string) {
+    console.log(`${props.provider?.email}/${filename}`);
+    api
+      .get(`provider/download/${props.provider?.email}/${filename}`)
+      .then(() => console.log("deu certo"));
+  }
   function handleDelete(email: string | undefined) {
     api.delete(`/provider/${email}`).then(() => {
       props.onClose();
       window.location.reload();
     });
-  }
-
-  function handleUpdate(email: string | undefined) {
-    api.put(`/provider/${email}`);
   }
 
   return (
@@ -52,6 +58,18 @@ export function InformationModal(props: ModalProps) {
                 <strong className="name">{contact.name}</strong>
                 <p>Email: {contact.email}</p>
                 <p>Departamento: {contact.departament}</p>
+              </li>
+            ))}
+          </ul>
+          <ul>
+            <strong>Documentos</strong>
+            {props.documents?.map((document) => (
+              <li
+                onClick={() => handleDocumentClick(document.name)}
+                className="modal-item contacts"
+              >
+                <p>nome: {document.name}</p>
+                <p>url: {document.url}</p>
               </li>
             ))}
           </ul>

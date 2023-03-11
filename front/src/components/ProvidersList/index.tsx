@@ -3,6 +3,8 @@ import { contactsType } from "../../types/contactType";
 import "./style.scss";
 import { InformationModal } from "../InformationModal";
 import { useState } from "react";
+import { documentType } from "../../types/documentType";
+import { api } from "../../services/api";
 
 interface providerTypes {
   providers?: providerType[];
@@ -12,10 +14,18 @@ interface providerTypes {
 export function ProviderList({ providers, filteredProvider }: providerTypes) {
   const [actualProvider, setActualProvider] = useState<providerType>();
   const [modalState, setModalState] = useState(false);
+  const [documents, setDocuments] = useState<Array<documentType>>([]);
 
   function handleClick(provider: providerType) {
     setModalState(true);
     setActualProvider(provider);
+    api
+      .get(`provider/files/${provider?.email}`)
+      .then((response) =>
+        response.data.statusCode === 404
+          ? setDocuments([])
+          : setDocuments(response.data)
+      );
   }
 
   return (
@@ -52,6 +62,7 @@ export function ProviderList({ providers, filteredProvider }: providerTypes) {
       )}
       <InformationModal
         provider={actualProvider}
+        documents={documents}
         show={modalState}
         onClose={() => setModalState(!true)}
       />

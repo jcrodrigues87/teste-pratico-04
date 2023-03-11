@@ -8,5 +8,6 @@ export type createProvider = {
   email: string;
   zip_code: string;
   address: string;
+  filesPath: string;
   contacts: createProviderContact[];
 };

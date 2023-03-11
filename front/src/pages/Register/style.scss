@@ -1,0 +1,118 @@
+.main-register {
+  width: 100%;
+  height: 100vh;
+  background-color: lightgray;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+}
+
+.container {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  scroll-snap-align: center;
+}
+
+.register-form {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.title {
+  margin: 0 auto;
+  margin-bottom: 0.6rem;
+}
+
+.general-informations {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.address-informations {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.contacts-information {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 0.5rem;
+  label {
+    font-size: 1rem;
+  }
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  button {
+    width: 5rem;
+    height: 2rem;
+    color: white;
+    border-radius: 0.6rem;
+    background-color: green;
+  }
+  button:hover {
+    background-color: rgb(9, 235, 9);
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.contact-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: black;
+  font-weight: lighter;
+  list-style: none;
+}
+
+.error-message {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.send-informations {
+  width: 5rem;
+  height: 2rem;
+  color: black;
+  padding: 0.5rem;
+  box-sizing: content-box;
+  border-radius: 0.6rem;
+  background-color: white;
+}
+
+.send-informations:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+}

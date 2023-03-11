@@ -1,0 +1,41 @@
+.main-home {
+  width: 100%;
+  height: 100vh;
+  background-color: lightsteelblue;
+  display: flex;
+}
+
+.container-home {
+  width: 50%;
+  height: 60vh;
+  margin: auto;
+  background-color: lightskyblue;
+  border-radius: 0.5rem;
+}
+
+.home-buttons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  box-sizing: content-box;
+  border-radius: 0.5rem;
+}
+
+.buttons {
+  width: 7rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-size: 1.2rem;
+  font-weight: 100;
+  border: none;
+}
+
+.buttons:hover {
+  cursor: pointer;
+  background-color: lightblue;
+  color: white;
+}

@@ -10,7 +10,7 @@ if (@$_GET['pesquisa'] == "true") {
             *
         FROM fornecedores
         WHERE
-            id=id
+            1=1
             ";
 
     if ($_GET["cnpj"]) {

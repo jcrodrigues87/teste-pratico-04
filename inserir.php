@@ -51,16 +51,6 @@ include("inc/header.html");
     </p>
 
     <p>
-        <label class="documentos">Documentos</label>
-        <input type="file" name="documento_1" id="documento_1"><br>
-        <input type="file" name="documento_2" id="documento_2"><br>
-        <input type="file" name="documento_3" id="documento_3"><br>
-        <input type="file" name="documento_4" id="documento_4"><br>
-        <input type="file" name="documento_5" id="documento_5"><br>
-        <span class="msg" id="documentos_msg"></span>
-    </p>
-
-    <p>
         <label>Nome do contato</label>
         <input name="contato_1_nome" id="contato_1_nome" type="text" maxlength="100">
 
@@ -83,6 +73,16 @@ include("inc/header.html");
         <input name="contato_2_email" id="contato_2_email" type="text" maxlength="100">
     </p>
     <span class="msg" id="contato_2_msg"></span>
+
+    <p>
+        <label class="documentos">Documentos</label>
+        <input type="file" name="documento_1" id="documento_1"><br>
+        <input type="file" name="documento_2" id="documento_2"><br>
+        <input type="file" name="documento_3" id="documento_3"><br>
+        <input type="file" name="documento_4" id="documento_4"><br>
+        <input type="file" name="documento_5" id="documento_5"><br>
+        <span class="msg" id="documentos_msg"></span>
+    </p>
 
     <p>
         <button onclick="return salvar()">Salvar</button>
@@ -225,19 +225,6 @@ include("inc/header.html");
             $("#endereco_msg").html("Endereço inválido.");
         }
 
-        // validando documentos
-        if (documento_1.length == 0 &&
-            documento_2.length == 0 &&
-            documento_3.length == 0 &&
-            documento_4.length == 0 &&
-            documento_5.length == 0) {
-
-            erro = true;
-            $("#documentos_msg").html("Pelo menos 1 documento é obrigatório.");
-        } else {
-            $("#documentos_msg").html("");
-        }
-
         // validando contatos
         if (contato_1_nome.length > 0 &&
             contato_1_departamento.length > 0 &&
@@ -256,6 +243,21 @@ include("inc/header.html");
             erro = true;
             $("#contato_1_msg").html("Primeiro contato é obrigatório.");
         }
+
+        // validando documentos
+        /*
+        if (documento_1.length == 0 &&
+            documento_2.length == 0 &&
+            documento_3.length == 0 &&
+            documento_4.length == 0 &&
+            documento_5.length == 0) {
+
+            erro = true;
+            $("#documentos_msg").html("Pelo menos 1 documento é obrigatório.");
+        } else {
+            $("#documentos_msg").html("");
+        }
+        */
 
         if (erro) {
             return false;

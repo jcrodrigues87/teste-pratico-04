@@ -75,6 +75,30 @@ include("inc/header.html");
     <span class="msg" id="contato_2_msg"></span>
 
     <p>
+        <label>Nome do contato</label>
+        <input name="contato_3_nome" id="contato_3_nome" type="text" maxlength="100">
+
+        <label>Departamento</label>
+        <input name="contato_3_departamento" id="contato_3_departamento" type="text" maxlength="50">
+
+        <label>E-mail</label>
+        <input name="contato_3_email" id="contato_3_email" type="text" maxlength="100">
+    </p>
+    <span class="msg" id="contato_3_msg"></span>
+
+    <p>
+        <label>Nome do contato</label>
+        <input name="contato_4_nome" id="contato_4_nome" type="text" maxlength="100">
+
+        <label>Departamento</label>
+        <input name="contato_4_departamento" id="contato_4_departamento" type="text" maxlength="50">
+
+        <label>E-mail</label>
+        <input name="contato_4_email" id="contato_4_email" type="text" maxlength="100">
+    </p>
+    <span class="msg" id="contato_4_msg"></span>
+
+    <p>
         <label class="documentos">Documentos</label>
         <input type="file" name="documento_1" id="documento_1"><br>
         <input type="file" name="documento_2" id="documento_2"><br>
@@ -158,10 +182,6 @@ include("inc/header.html");
         contato_1_nome = $("#contato_1_nome").val();
         contato_1_departamento = $("#contato_1_departamento").val();
         contato_1_email = $("#contato_1_email").val();
-
-        contato_2_nome = $("#contato_2_nome").val();
-        contato_2_departamento = $("#contato_2_departamento").val();
-        contato_2_email = $("#contato_2_email").val();
 
         // validando CNPJ
         if (validarCNPJ(cnpj)) {

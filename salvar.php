@@ -128,6 +128,14 @@ if (!$erro) {
     $contatos[2]["departamento"] = $_POST["contato_2_departamento"];
     $contatos[2]["email"] = $_POST["contato_2_email"];
 
+    $contatos[3]["nome"] = $_POST["contato_3_nome"];
+    $contatos[3]["departamento"] = $_POST["contato_3_departamento"];
+    $contatos[3]["email"] = $_POST["contato_3_email"];
+
+    $contatos[4]["nome"] = $_POST["contato_4_nome"];
+    $contatos[4]["departamento"] = $_POST["contato_4_departamento"];
+    $contatos[4]["email"] = $_POST["contato_4_email"];
+
     foreach ($contatos as $contato) {
         if ($contato["nome"] && $contato["departamento"] && $contato["email"]) {
 

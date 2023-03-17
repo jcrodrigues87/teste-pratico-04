@@ -97,7 +97,7 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
             <td><?= $fornecedor["email"] ?></td>
             <td><?= $fornecedor["quantidade_contatos"] ?></td>
             <td><?= $fornecedor["quantidade_documentos"] ?></td>
-            <td><?= "<a href='ficha_fornecedor.php?fornecedor_id=$fornecedor_id'>Ficha Completa</a>" ?></td>
+            <td><?= "<a href='ficha.php?fornecedor_id=$fornecedor_id'>Ficha Completa</a>" ?></td>
         </tr>
     <?php
     }

@@ -4,7 +4,7 @@ include("inc/header.php");
 include("inc/header.html");
 ?>
 
-<h1>Ficha Fornecedor</h1>
+<h1>Ficha do Fornecedor</h1>
 
 <?php
 

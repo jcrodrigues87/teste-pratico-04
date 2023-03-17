@@ -3,12 +3,36 @@ include("inc/header.php");
 
 include("inc/header.html");
 
-// query sql listando todos os dados de fornecedores e quantidade de docs e contatos
-$query = "
-    SELECT
-        *
-    FROM fornecedores
+if (@$_GET['pesquisa'] == "true") {
+    // query sql buscando fornecedores de acordo com os parametros
+    $query = "
+        SELECT
+            *
+        FROM fornecedores
+        WHERE
+            id=id
+            ";
+
+    if ($_GET["cnpj"]) {
+        $query .= " AND cnpj like '%" . addslashes($_GET["cnpj"]) . "%' ";
+    }
+
+    if ($_GET["email"]) {
+        $query .= " AND email like '%" . addslashes($_GET["email"]) . "%' ";
+    }
+
+    if ($_GET["razao_social"]) {
+        $query .= " AND razao_social like '%" . addslashes($_GET["razao_social"]) . "%' ";
+    }
+
+} else {
+    // query sql listando todos os dados de fornecedores e quantidade de docs e contatos
+    $query = "
+        SELECT
+            *
+        FROM fornecedores
         ";
+}
 
 // buscando fornecedores para listar
 $fornecedores_result = mysqli_query($mysqli, $query);
@@ -51,33 +75,49 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
 
 <h1>Fornecedores</h1>
 
-<h2>Pesquisar</h2>
+<h2>Filtros</h2>
 
-<form action="pesquisar.php">
+<form>
+    <input type="hidden" name="pesquisa" value="true">
 
     <p>
         <label class="fornecedor">CNPJ</label>
-        <input type="text" name="cnpj" id="cnpj" class="ls-mask-cnpj" placeholder="00.000.000/0000-00" maxlength="18">
+        <input type="text" name="cnpj" id="cnpj" class="ls-mask-cnpj" placeholder="00.000.000/0000-00" maxlength="18" value="<?= htmlentities(@$_GET["cnpj"]) ?>">
         <span class="msg" id="cnpj_msg"></span>
     </p>
 
     <p>
         <label class="fornecedor">Razão Social</label>
-        <input type="text" name="razao_social" id="razao_social" maxlength="255">
+        <input type="text" name="razao_social" id="razao_social" maxlength="255" value="<?= htmlentities(@$_GET["razao_social"]) ?>">
         <span class="msg" id="razao_social_msg"></span>
     </p>
 
     <p>
         <label class="fornecedor">E-mail</label>
-        <input type="text" name="email" id="email" maxlength="100">
+        <input type="text" name="email" id="email" maxlength="100" value="<?= htmlentities(@$_GET["email"]) ?>">
         <span class="msg" id="email_msg"></span>
     </p>
 
-    <button>Pesquisar</button>
+    <button>Filtrar</button>
 
 </form>
 
-<h2>Lista</h2>
+<?php
+if (@$_GET['pesquisa'] == "true") {
+
+?>
+    <h2>Resultado de Pesquisa</h2>
+<?php
+
+} else {
+
+?>
+    <h2>Lista</h2>
+<?php
+
+}
+?>
+
 
 <table class="lista">
     <tr>

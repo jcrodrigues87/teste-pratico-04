@@ -74,6 +74,9 @@ if (!$erro) {
     echo "<table class='lista'><tr><th>Nome</th><th>Departamento</th><th>E-mail</th></tr>";
 
     while ($contatos = $contatos_result->fetch_assoc()) {
+        // preparando para mostrar o contato no HTML
+        $contatos  = array_map("htmlentities", $contatos);
+        
         echo "<tr>";
         echo "<td>" . $contatos["nome"] . "</td>";
         echo "<td>" . $contatos["departamento"] . "</td>";
@@ -83,12 +86,8 @@ if (!$erro) {
 
     echo "</table>";
 
-}
-?>
-    <h2>Documentos</h2>
-<?php
+    echo "<h2>Documentos</h2>";
 
-if (!$erro) {
     // recuperando dados do fornecedor
     $query = "
         SELECT 
@@ -109,7 +108,10 @@ if (!$erro) {
         $path = $documentos["path"];
 
         echo "<li><a href='$path'>";
-        echo basename($path);
+
+        // pegando apenas o nome do arquivo e preparando ele para ser exibido no HTML
+        echo htmlentities(basename($path));
+
         echo "</a></li>";
 
         $nenhum = false;
@@ -121,5 +123,7 @@ if (!$erro) {
         echo "Nenhum documento encontrado.";
     }
 }
-
-
+?>
+<?php
+include("inc/footer.html");
+?>

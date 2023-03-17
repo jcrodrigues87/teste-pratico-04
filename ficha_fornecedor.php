@@ -46,13 +46,13 @@ if (!$erro) {
     ?>
 
     <ul class="ficha">
-        <li>CNPJ: <?= $fornecedor["cnpj"]?></li>
-        <li>Razão Social: <?= $fornecedor["razao_social"]?></li>
-        <li>Data de Abertura: <?= $fornecedor["data_abertura"]?></li>
-        <li>Telefone: <?= $fornecedor["telefone"]?></li>
-        <li>E-mail: <?= $fornecedor["email"]?></li>
-        <li>CEP: <?= $fornecedor["cep"]?></li>
-        <li>Endereço: <?= $fornecedor["endereco"]?></li>
+        <li><b>CNPJ:</b> <?= $fornecedor["cnpj"]?></li>
+        <li><b>Razão Social:</b> <?= $fornecedor["razao_social"]?></li>
+        <li><b>Data de Abertura:</b> <?= $fornecedor["data_abertura"]?></li>
+        <li><b>Telefone:</b> <?= $fornecedor["telefone"]?></li>
+        <li><b>E-mail:</b> <?= $fornecedor["email"]?></li>
+        <li><b>CEP:</b> <?= $fornecedor["cep"]?></li>
+        <li><b>Endereço:</b> <?= $fornecedor["endereco"]?></li>
     </ul>
 
     <h2>Contatos</h2>
@@ -100,7 +100,7 @@ if (!$erro) {
 
     $documentos_result = $mysqli->query($query);
 
-    echo "<ul class='ficha'>";
+    echo "<ul class='documentos'>";
 
     $nenhum = true;
 

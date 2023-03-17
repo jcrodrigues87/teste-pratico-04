@@ -44,6 +44,6 @@ label.fornecedor, label.documentos {
     color: red;
 }
 
-ul.ficha li {
+ul.ficha li, ul.documentos li {
   font-size: 12pt;
 }

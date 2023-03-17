@@ -40,7 +40,7 @@ include("inc/header.html");
 
     <p>
         <label class="fornecedor">CEP</label>
-        <input type="text" name="cep" id="cep" class="ls-mask-cep" placeholder="00000-000" maxlength="9" onchange="buscaCep()">
+        <input type="text" name="cep" id="cep" class="ls-mask-cep" placeholder="00000-000" maxlength="9" onblur="busca_cep()">
         <span class="msg" id="cep_msg"></span>
     </p>
 
@@ -91,14 +91,54 @@ include("inc/header.html");
 </form>
 
 <script>
-    function buscaCep() {
-        cep = $("#cep").val();
-        //https://viacep.com.br/ws/01001000/json/
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#cep").val("");
+        $("#endereco").val("");
+    }
 
-        if (cep.length == 9) {
-            $("#cep_msg").html("Teste");
-        } else {
-            $("#cep_msg").html("CEP inválido.");
+    
+    //Quando o campo cep perde o foco.
+    function busca_cep() {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $("#cep").val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#endereco").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#endereco").val(dados.logradouro + " - " + dados.bairro + " - " + dados.localidade);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        $("#cep_msg").html("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                $("#cep_msg").html("CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
         }
     }
 
@@ -134,7 +174,7 @@ include("inc/header.html");
             $("#cnpj_msg").html("");
         } else {
             erro = true;
-            $("#cnpj_msg").html("CNPJ inválido. 50.362.500/0001-41");
+            $("#cnpj_msg").html("CNPJ inválido.");
         }
 
         // validando razao social

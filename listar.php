@@ -62,6 +62,7 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
         <th>Endereço</th>
         <th>Contatos</th>
         <th>Documentos</th>
+        <th></th>
     </tr>
     <?php
     foreach ($fornecedores as $fornecedor_id => $fornecedor) {
@@ -74,20 +75,9 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
             <td><?= $fornecedor["email"] ?></td>
             <td><?= $fornecedor["cep"] ?></td>
             <td><?= $fornecedor["endereco"] ?></td>
-            <td>
-                <?php
-                echo "<a href='contatos.php?fornecedores_id=$fornecedor_id'>";
-                echo $fornecedor["quantidade_contatos"];
-                echo "</a>";
-                ?>
-            </td>
-            <td>
-                <?php
-                echo "<a href='documentos.php?fornecedores_id=$fornecedor_id'>";
-                echo $fornecedor["quantidade_documentos"];
-                echo "</a>";
-                ?>
-            </td>
+            <td><?= $fornecedor["quantidade_contatos"] ?></td>
+            <td><?= $fornecedor["quantidade_documentos"] ?></td>
+            <td><?= "<a href='ficha_fornecedor.php?fornecedor_id=$fornecedor_id'>Ficha Completa</a>" ?></td>
         </tr>
     <?php
     }

@@ -43,3 +43,7 @@ label.fornecedor, label.documentos {
 .msg {
     color: red;
 }
+
+ul.ficha li {
+  font-size: 12pt;
+}

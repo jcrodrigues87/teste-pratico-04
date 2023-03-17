@@ -49,17 +49,41 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
 
 ?>
 
-<h1>Lista de Fornecedores</h1>
+<h1>Fornecedores</h1>
+
+<h2>Pesquisar</h2>
+
+<form action="pesquisar.php">
+
+    <p>
+        <label class="fornecedor">CNPJ</label>
+        <input type="text" name="cnpj" id="cnpj" class="ls-mask-cnpj" placeholder="00.000.000/0000-00" maxlength="18">
+        <span class="msg" id="cnpj_msg"></span>
+    </p>
+
+    <p>
+        <label class="fornecedor">Razão Social</label>
+        <input type="text" name="razao_social" id="razao_social" maxlength="255">
+        <span class="msg" id="razao_social_msg"></span>
+    </p>
+
+    <p>
+        <label class="fornecedor">E-mail</label>
+        <input type="text" name="email" id="email" maxlength="100">
+        <span class="msg" id="email_msg"></span>
+    </p>
+
+    <button>Pesquisar</button>
+
+</form>
+
+<h2>Lista</h2>
 
 <table class="lista">
     <tr>
         <th>CNPJ</th>
         <th>Razão Social</th>
-        <th>Data de Abertura</th>
-        <th>Telefone</th>
         <th>E-mail</th>
-        <th>CEP</th>
-        <th>Endereço</th>
         <th>Contatos</th>
         <th>Documentos</th>
         <th></th>
@@ -70,11 +94,7 @@ while ($fornecedor = mysqli_fetch_assoc($fornecedores_result)) {
         <tr>
             <td><?= $fornecedor["cnpj"] ?></td>
             <td><?= $fornecedor["razao_social"] ?></td>
-            <td><?= $fornecedor["data_abertura"] ?></td>
-            <td><?= $fornecedor["telefone"] ?></td>
             <td><?= $fornecedor["email"] ?></td>
-            <td><?= $fornecedor["cep"] ?></td>
-            <td><?= $fornecedor["endereco"] ?></td>
             <td><?= $fornecedor["quantidade_contatos"] ?></td>
             <td><?= $fornecedor["quantidade_documentos"] ?></td>
             <td><?= "<a href='ficha_fornecedor.php?fornecedor_id=$fornecedor_id'>Ficha Completa</a>" ?></td>

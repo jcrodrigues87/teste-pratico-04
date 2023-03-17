@@ -155,12 +155,6 @@ include("inc/header.html");
         cep = $("#cep").val();
         endereco = $("#endereco").val();
 
-        documento_1 = $("#documento_1").val();
-        documento_2 = $("#documento_2").val();
-        documento_3 = $("#documento_3").val();
-        documento_4 = $("#documento_4").val();
-        documento_5 = $("#documento_5").val();
-
         contato_1_nome = $("#contato_1_nome").val();
         contato_1_departamento = $("#contato_1_departamento").val();
         contato_1_email = $("#contato_1_email").val();
@@ -243,21 +237,6 @@ include("inc/header.html");
             erro = true;
             $("#contato_1_msg").html("Primeiro contato é obrigatório.");
         }
-
-        // validando documentos
-        /*
-        if (documento_1.length == 0 &&
-            documento_2.length == 0 &&
-            documento_3.length == 0 &&
-            documento_4.length == 0 &&
-            documento_5.length == 0) {
-
-            erro = true;
-            $("#documentos_msg").html("Pelo menos 1 documento é obrigatório.");
-        } else {
-            $("#documentos_msg").html("");
-        }
-        */
 
         if (erro) {
             return false;

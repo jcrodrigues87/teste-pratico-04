@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2023 at 05:52 PM
+-- Generation Time: Mar 18, 2023 at 03:22 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `php-canex`
 --
-CREATE DATABASE IF NOT EXISTS `php-canex` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `php-canex`;
 
 -- --------------------------------------------------------
 

@@ -10,9 +10,49 @@ include("inc/header.html");
 
 $erro = false;
 
-// verificação de email e cnpj duplicado é feito direto
-// pelo banco de dados ao inserir o fornecedor na tabela
-// com chaves unicas para estes campos
+// verificação de cnpj duplicado
+if (!$erro) {
+    $cnpj = addslashes($_POST["cnpj"]);
+    
+    $query = "
+        SELECT 
+            *
+        FROM 
+            fornecedores
+        WHERE
+            cnpj = \"$cnpj\"
+        ";
+
+    $fornecedor_result = $mysqli->query($query);
+
+    $fornecedor = $fornecedor_result->fetch_assoc();
+
+    if ($fornecedor) {
+        $erro = "CNPJ já cadastrado.";
+    }
+}
+
+// verificação de email duplicado
+if (!$erro) {
+    $email = addslashes($_POST["email"]);
+    
+    $query = "
+        SELECT 
+            *
+        FROM 
+            fornecedores
+        WHERE
+            email = \"$email\"
+        ";
+
+    $fornecedor_result = $mysqli->query($query);
+
+    $fornecedor = $fornecedor_result->fetch_assoc();
+
+    if ($fornecedor) {
+        $erro = "E-mail já cadastrado.";
+    }
+}
 
 // verificar e modificar formato de data de abertura
 if (!$erro) {

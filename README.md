@@ -13,3 +13,5 @@ Para instalar esse projeto:
 5. Crie o banco de dados “php-canex”
 6. Rode o arquivo “php-canex.sql” na guia “import” do banco de dados recém criado
 7. Acesse o projeto em http://localhost/teste-pratico-04-luciano-vettoretti/
+
+OBS: para uma melhor exibição abra esse projeto em um PC.

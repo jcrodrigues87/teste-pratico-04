@@ -1,0 +1,49 @@
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+.menu li {
+  float: left;
+}
+
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.menu li a:hover {
+  background-color: #111111;
+}
+
+.lista {
+    width: 100%;
+    border: #333333 solid 1px;
+}
+
+.lista td, .lista th {
+    border: #111111 solid 1px;
+}
+
+label.fornecedor, label.documentos {
+    display: block;
+}
+
+.msg {
+    color: red;
+}
+
+ul.ficha li, ul.documentos li {
+  font-size: 12pt;
+}

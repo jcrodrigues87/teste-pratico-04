@@ -22,15 +22,6 @@ export async function fornecedorRota(fastify: FastifyInstance) {
         const data = await prisma.fornecedor.findUnique({
             where:{
                 id,
-            },
-            include:{
-                contatos:{
-                    select:{
-                        nome: true,
-                        departamento: true,
-                        email: true,
-                    }
-                }
             }
         })
 
@@ -46,9 +37,15 @@ export async function fornecedorRota(fastify: FastifyInstance) {
             email: z.string(),
             cep: z.string(),
             endereco: z.string(),
-            numero: z.number(),
+            numero: z.string(),
             cidade: z.string(),
             estado: z.string(),
+            nomeContato: z.string(),
+            emailContato: z.string(),
+            departamentoContato: z.string(),
+            nomeContato1: z.string(),
+            emailContato1: z.string(),
+            departamentoContato1: z.string(),
         })
 
 
@@ -60,7 +57,13 @@ export async function fornecedorRota(fastify: FastifyInstance) {
                 endereco,
                 numero,
                 cidade,
-                estado} = criarFornecedorBody.parse(request.body)
+                estado,
+                nomeContato,
+                emailContato,
+                departamentoContato,
+                nomeContato1,
+                emailContato1,
+                departamentoContato1} = criarFornecedorBody.parse(request.body)
 
         let fornecedor = await prisma.fornecedor.findUnique({
             where:{
@@ -80,19 +83,12 @@ export async function fornecedorRota(fastify: FastifyInstance) {
                     numero: numero,
                     cidade: cidade,
                     estado: estado,
-
-                    contatos: {
-                        create:[{
-                            nome: 'teste2',
-                            email: 'teste3@teste.com.br',
-                            departamento: 'GUARITA'
-                        },
-                        {
-                            nome: 'teste3',
-                            email: 'teste3@teste.com.br',
-                            departamento: 'ADM'
-                        }]
-                    }
+                    nomeContato: nomeContato,
+                    emailContato: emailContato,
+                    departamentoContato: departamentoContato,
+                    nomeContato1: nomeContato1,
+                    emailContato1: emailContato1,
+                    departamentoContato1: departamentoContato1,
                 }
             })
             return reply.status(201).send({retorno: 'OK'})

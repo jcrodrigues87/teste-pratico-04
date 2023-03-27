@@ -17,7 +17,7 @@ async function bootstrap() {
 
 
     await fastify.listen({port: 3333}) //Porta de conexão
-    
+
 }
 
 bootstrap()

@@ -16,25 +16,11 @@ async function main() {
             numero: 20,       
             cidade: 'Piumhi',       
             estado: 'MG',
-
-            contatos: {
-                create: {
-                    nome: 'Guilherme Cintra',
-                    departamento: 'TI',
-                    email: 'ti@gmail.com',
-                        }
-            }
+            nomeContato: 'Guilherme Cintra',
+            departamentoContato: 'TI',
+            emailContato: 'ti@gmail.com'
         }
     })
-
-    // const contato = await prisma.contato.create({
-    //     data: {
-    //         nome: 'Jonh LTDA',
-    //         departamento: 'Financeiro',
-    //         email: 'finaceiro@gmail.com',
-    //         fornecedorId: fornecedor.id
-    //     }
-    // })
 }
 
 main()

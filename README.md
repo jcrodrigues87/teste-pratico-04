@@ -1,3 +1,15 @@
+Como Testar aplicação
+Execute os seguintes scritp na ordem
+1-devBackend
+2-devFrontend
+3-devFrontend
+
+Depois de executar os scritp acima, e so executar esses dois, que o Sistema vai estar funcionando.
+devBackend
+devFrontend
+
+Link do portal: http://localhost:9000/#/
+
 # Teste Prático
 
 O objetivo deste teste é conhecer suas habilidades em:

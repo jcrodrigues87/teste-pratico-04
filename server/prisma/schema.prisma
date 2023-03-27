@@ -11,29 +11,22 @@ datasource db {
 }
 
 model Fornecedor {
-  id           String   @id @default(cuid())
-  razao        String
-  cnpj         String
-  dataAbertura DateTime?
-  telefone     String?
-  email        String   @unique
-  cep          String
-  endereco     String
-  numero       Int
-  cidade       String
-  estado       String
-  dataCriado   DateTime @default(now())
-
-  contatos Contato[]
-}
-
-model Contato {
-  id           String  @id @default(cuid())
-  fornecedorId String
-  nome         String?
-  departamento String?
-  email        String?
-
-  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id])
-  
+  id                   String    @id @default(cuid())
+  razao                String
+  cnpj                 String
+  dataAbertura         DateTime?
+  telefone             String?
+  email                String    @unique
+  cep                  String
+  endereco             String
+  numero               String
+  cidade               String
+  estado               String
+  nomeContato          String
+  emailContato         String
+  departamentoContato  String
+  nomeContato1         String?
+  emailContato1        String?
+  departamentoContato1 String?
+  dataCriado           DateTime  @default(now())
 }

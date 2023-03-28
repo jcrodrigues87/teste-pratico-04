@@ -33,6 +33,7 @@ export async function fornecedorRota(fastify: FastifyInstance) {
         const criarFornecedorBody = z.object({
             razao: z.string(),
             cnpj: z.string(),
+            dataAbertura: z.string(),
             telefone: z.string(),
             email: z.string(),
             cep: z.string(),
@@ -51,6 +52,7 @@ export async function fornecedorRota(fastify: FastifyInstance) {
 
         const {razao,
                 cnpj,
+                dataAbertura,
                 telefone,
                 email,
                 cep,
@@ -76,6 +78,7 @@ export async function fornecedorRota(fastify: FastifyInstance) {
                 data: {
                     razao : razao,
                     cnpj: cnpj,
+                    dataAbertura: dataAbertura,
                     telefone: telefone,
                     email: email,
                     cep: cep,

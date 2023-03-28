@@ -6,7 +6,7 @@ import { fornecedorRota } from './routes/fornecedor'
 
 async function bootstrap() {
     const fastify = Fastify({
-        logger: true, //função para mostrar os log do que esta ocorrendo
+        logger: false, //função para mostrar os log do que esta ocorrendo
     })
 
     await fastify.register(cors, {
@@ -17,7 +17,7 @@ async function bootstrap() {
 
 
     await fastify.listen({port: 3333}) //Porta de conexão
-
+    
 }
 
 bootstrap()

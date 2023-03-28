@@ -25,7 +25,7 @@ const dadosPadrao = {
   razao: null,
   cnpj: null,
   telefone: null,
-  // dataAbertura: new Date().toISOString().slice(0, 10),
+  dataAbertura: new Date().toISOString().slice(0, 10),
   email: null,
   cep: null,
   endereco: null,
@@ -44,14 +44,14 @@ const dados = ref({ ...Object.assign({}, dadosPadrao) })
 
 const obtemDados = () => {
   if (!props.registro.id || incluindo.value) {
-    dados.value = dados
+    dados.value = { ...Object.assign({}, dadosPadrao) }
     return
   }
 
   api
     .get(`/fornecedor/${props.registro.id}`)
     .then(({ data: { data } }) => {
-      dados.value = data
+      dados.value = { ...data, dataAbertura: data.dataAbertura ? data.dataAbertura.slice(0, 10) : null }
     })
 }
 
@@ -65,6 +65,9 @@ watch(
     if (newValue && newValue !== oldValue) {
       obtemDados()
     }
+  }, {
+    immediate: true,
+    deep: true
   }
 )
 
@@ -75,7 +78,7 @@ const salvar = () => {
 
     if (incluindo.value) {
       // alert('insert')
-      api.post('/fornecedor', dados.value)
+      api.post('/fornecedor', { ...dados.value, dataAbertura: dados.value.dataAbertura ? new Date(dados.value.dataAbertura).toISOString() : null })
         .then(({ data: { data } }) => {
           emit('voltar')
           alert('Cadastro incluido com sucesso')
@@ -127,13 +130,13 @@ console.log(visualizando)
         :readonly='!(incluindo)'
         :rules="[val => val !== null && val !== '' || 'Campo Obrigatorio']"
       />
-      <!-- <q-input
+      <q-input
         v-model='dados.dataAbertura'
         label='Data Abertura'
         stack-label
         type='date'
         :readonly='!(incluindo)'
-      /> -->
+      />
       <q-input
         v-model='dados.telefone'
         label='Telefone'
@@ -187,7 +190,7 @@ console.log(visualizando)
       <div greedy class='row' style='gap: 0px 10px'>
       <q-input
         v-model='dados.nomeContato'
-        label='Nome'
+        label='Contato'
         stack-label
         :readonly='!(incluindo)'
         :rules="[val => val && val.length > 0 || 'Campo Obrigatorio']" />

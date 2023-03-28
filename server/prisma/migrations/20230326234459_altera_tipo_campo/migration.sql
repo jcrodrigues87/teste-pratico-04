@@ -1,0 +1,28 @@
+-- RedefineTables
+PRAGMA foreign_keys=OFF;
+CREATE TABLE "new_Fornecedor" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "razao" TEXT NOT NULL,
+    "cnpj" TEXT NOT NULL,
+    "dataAbertura" DATETIME,
+    "telefone" TEXT,
+    "email" TEXT NOT NULL,
+    "cep" TEXT NOT NULL,
+    "endereco" TEXT NOT NULL,
+    "numero" TEXT NOT NULL,
+    "cidade" TEXT NOT NULL,
+    "estado" TEXT NOT NULL,
+    "nomeContato" TEXT NOT NULL,
+    "emailContato" TEXT NOT NULL,
+    "departamentoContato" TEXT NOT NULL,
+    "nomeContato1" TEXT,
+    "emailContato1" TEXT,
+    "departamentoContato1" TEXT,
+    "dataCriado" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO "new_Fornecedor" ("cep", "cidade", "cnpj", "dataAbertura", "dataCriado", "departamentoContato", "departamentoContato1", "email", "emailContato", "emailContato1", "endereco", "estado", "id", "nomeContato", "nomeContato1", "numero", "razao", "telefone") SELECT "cep", "cidade", "cnpj", "dataAbertura", "dataCriado", "departamentoContato", "departamentoContato1", "email", "emailContato", "emailContato1", "endereco", "estado", "id", "nomeContato", "nomeContato1", "numero", "razao", "telefone" FROM "Fornecedor";
+DROP TABLE "Fornecedor";
+ALTER TABLE "new_Fornecedor" RENAME TO "Fornecedor";
+CREATE UNIQUE INDEX "Fornecedor_email_key" ON "Fornecedor"("email");
+PRAGMA foreign_key_check;
+PRAGMA foreign_keys=ON;

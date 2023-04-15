@@ -1,97 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prestadores de serviços</title>
+    <title>perfil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
 <body class="bg-dark-subtle">
-    <h1 class="mb-3 ">Pagina de cadastro de prestadores de serviços</h1>
+    <section class="text-center">
+        <div>
+            <div class="container p-2"><img src="imagens/apresetação.jpg" class="rounded-circle border-3 border-primary w-25"></i>
+                </i>
+            </div>
+
+            <p class="" id="biografia">biografia:</p>
+            <p class="" id="nome">Nome:</p>
+            <p class="" id="idade">Idade:</p>
+            <p class="" id="localização">Localização:</p>
+
+        </div>
+    </section>
+
+    <h1 class="p-2 mb-3 text-center ">Atualizar perfil</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <form action="" method="get">
-        <div class="row">
-            <div class="col mb-3">
-                <input type="text" name="cnpj" id="cnpj" class="form-control " placeholder="CNPJ">
+    <div class="d-flex justify-content-center">
+        <form class="mx-auto " action="" method="post">
+            <div class=" mb-3 ">
+                <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome">
             </div>
             <div class="col mb-3">
-                <input type="text" name="razao_social" id="razao_social" class="form-control" placeholder="Razão social">
-            </div>
-        </div>
 
-        <div class="col mb-3">
-            <label for="inputAddress2" class="form-label ">Data de Abertura</label>
-            <input type="date" name="data_de_abertura" id="data_de_abertura" class="form-control" placeholder="Data de Abertura">
-        </div>
-        <div class="col mb-3">
-            <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone">
-        </div>
-
-
-        <div class="form-group mb-3">
-
-            <input type="email" name="seu_email" class="form-control" id="seu_email" aria-describedby="emailHelp" placeholder="Seu E-mail">
-            <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="row">
-            <div class="col mb-3">
-                <input type="text" name="Estado" id="txtEstado" class="form-control" placeholder="Estado">
+                <input type="date" name="idade" id="idade" class="form-control" placeholder="idade">
             </div>
             <div class="col mb-3">
-                <input type="text" name="cidade" id="txtcidade" class="form-control" placeholder="Cidade">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col mb-3">
-                <input type="text" name="endereço" id="endereço" class="form-control" placeholder="Endereço">
+                <input type="text" name="localizaçao" id="localizaçao" class="form-control" placeholder="Localização">
             </div>
             <div class="col mb-3">
-                <input type="text" name="cep" id="txtCep" class="form-control" maxlength="8" placeholder="Cep">
+                <input type="text" name="biografia" id="biografia" class="form-control" placeholder="biografia">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagem perfil</label>
+                <input class="form-control" type="file" id="formFile">
             </div>
 
-        </div>
-
-        <div class="row"><label for="inputAddress2" class="form-label ">Contatos</label>
-            <div class="col mb-3">
-                <input type="text" name="nome_do_contato" id="nome_do_contato" class="form-control " placeholder="Nome do contato">
-            </div>
-            <div class="col mb-3">
-                <input type="text" name="departamento" id="departamento" class="form-control" placeholder="Departamento">
-            </div>
-            <div class="col mb-3">
-                <input type="text" name="e-mail" id="e-mail" class="form-control" placeholder="E-mail">
-            </div>
-            <div>
-                <p>Alvara de funcionamento</p>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Carregar</label>
-                </div>
-                <p>Comprovante de Endereço</p>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Carregar</label>
-                </div>
-                <P>Outros documentos</P>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Carregar</label>
-                </div>
-
-
-            </div>
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <button class="btn btn-primary" name="submit" id="submit" type="submit">Enviar formulario</button>
             </div>
-    </form>
-    </form>
 
+        </form>
+    </div>
     <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="cep.js"></script>
-
 </body>
 
-</html>
+</html

@@ -1,3 +1,0 @@
-Para realizar o teste da aplicação Abra o arquivo HTML com um navegador web (como o Google Chrome ou o Mozilla Firefox).
-Verifique se a aplicação está funcionando corretamente, interagindo com os elementos da página e verificando o comportamento da aplicação.
-Você também pode usar ferramentas de desenvolvimento, como o console do desenvolvedor no navegador, para verificar se há erros e depurar o código. Além disso, existem ferramentas de automação de teste que podem ajudá-lo a testar a aplicação de forma mais eficiente e rigorosa.

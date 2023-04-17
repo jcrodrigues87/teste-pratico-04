@@ -44,3 +44,32 @@ Você deve desenvolver uma pequena aplicação WEB utilizando a linguagem de pro
 * Commits com mensagens claras;
 * Executar a aplicação em containers Docker;
 * Setup da aplicação em apenas um comando ou um script que facilite esse setup;
+
+
+## Setup
+
+* Clone o projeto para um sistema Linux;
+* Execute o shell script install.sh que se encontra na raiz do projeto;
+* Este script ira instalar o seguinte:
+* sqlite;
+* python3;
+* pip3 (instalador de pacotes do Python);
+* pacotes do Python;
+* Após isso o script irá gerar o banco de dados;
+* Depois de executar o install.sh, vá até a raiz do projeto e execute o comando "python3 app.py";
+
+
+## Funcionalidades entregues
+* CRUD básico;
+* Lista dos prestadores de serviço;
+* Filtragem da lista por CNPJ, Razão Social e email;
+* Clicar em um prestador da lista para exibir os detalhes e ter possibilidade de editar os dados;
+* Autopreenchimento do endereço com ViaCep;
+* Impede o cadastro de 2 prestadores com o mesmo e-mail;
+
+
+## Funcionalidades pendentes
+* Upload de documentos;
+* Os contatos do prestador: apenas foi feito o relacionamento no banco de dados, não foi feita a implementação das funcionalidades na tela e nem no controler (blueprint);
+
+

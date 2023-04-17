@@ -1,0 +1,12 @@
+td.action {
+    text-align: right;
+}
+td a {
+    margin-left: 10px;
+}
+td a.edit {
+    color: #FFC107;
+}
+td a.delete {
+    color: #F44336;
+}

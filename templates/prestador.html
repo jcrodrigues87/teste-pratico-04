@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Canex - Prestadores</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{url_for('static', filename='prestador.css')}}"></style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <input type="hidden" name="erros" id="erros" value="{{'\r\n'.join(erros)}}">
+    {% if prestador == None: %}
+    <h1>Novo Prestador de Serviço</h1>
+    <form method="post" action="/prestadores/criar">
+    {% else%}
+    <h1>Editar Prestador de Serviço</h1>
+    <form method="post" action="/prestadores/{{prestador.id}}">
+    {% endif %}
+        <table>
+            <tbody>
+                <tr>
+                    <td>CNPJ:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="cnpj" name="cnpj"></td>
+                    {% else %}
+                    <td><input type="text" id="cnpj" name="cnpj" value="{{prestador.cnpj}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Razão Social:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="razao_social" name="razao_social"></td>
+                    {% else %}
+                    <td><input type="text" id="razao_social" name="razao_social" value="{{prestador.razao_social}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Data de Abertura:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="date" id="data_abertura" name="data_abertura"></td>
+                    {% else %}
+                    <td><input type="date" id="data_abertura" name="data_abertura" value="{{prestador.data_abertura}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Telefone:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="telefone" name="telefone"></td>
+                    {% else %}
+                    <td><input type="tel" id="telefone" name="telefone" value="{{prestador.telefone}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>e-mail:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="email" name="email"></td>
+                    {% else %}
+                    <td><input type="email" id="email" name="email" value="{{prestador.email}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>CEP:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="cep" name="cep"></td>
+                    {% else %}
+                    <td><input type="text" id="cep" name="cep" value="{{prestador.cep}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Endereço:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="endereco" name="endereco"></td>
+                    {% else %}
+                    <td><input type="text" id="endereco" name="endereco" value="{{prestador.endereco}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Número:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="numero" name="numero"></td>
+                    {% else %}
+                    <td><input type="text" id="numero" name="numero" value="{{prestador.numero}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Complemento:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="complemento" name="complemento"></td>
+                    {% else %}
+                    <td><input type="text" id="complemento" name="complemento" value="{{prestador.complemento}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Bairro:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="bairro" name="bairro"></td>
+                    {% else %}
+                    <td><input type="text" id="bairro" name="bairro" value="{{prestador.bairro}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Cidade:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="cidade" name="cidade"></td>
+                    {% else %}
+                    <td><input type="text" id="cidade" name="cidade" value="{{prestador.cidade}}"></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Estado:</td>
+
+                    {% if prestador == None: %}
+                    <td><input type="text" id="estado" name="estado"></td>
+                    {% else %}
+                    <td><input type="text" id="estado" name="estado" value="{{prestador.estado}}"></td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        {% if (not prestador == None): %}
+        <h2>Contatos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Departamento</th>
+                    <th>e-mail</th>
+                    <th>
+                        <a href="/prestadores/contatos/criar" class="btn btn-success">Novo</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="contatos">
+                {% for index, contato in prestador.contatos %}
+                <tr>
+                    <td name="contato_nome"         id="contato_nome"        >{{contato.nome}}</td>
+                    <td name="contato_departamento" id="contato_departamento">{{contato.departamento}}></td>
+                    <td name="contato_email"        id="contato_email"       >{{contato.email}}></td>
+                    <td class="action">
+                        <a href="/prestadores/contatos/{{contato.id}}"         class="edit"  ><i class="material-icons" data-toggle="tooltip" title="Editar" >&#xE254;</i></a>
+                        <a href="/prestadores/contatos/{{contato.id}}/deletar" class="delete"><i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE254;</i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <dialog>
+            <form method="post" action="/prestadores/contatos/criar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" id="confirmar" name="confirmar" value="confirmar">
+            </form>
+        </dialog>
+        {% endif %}
+        <input type="submit" id="confirmar" name="confirmar" value="confirmar">
+    </form>
+    <script src="{{url_for('static', filename='prestador.js')}}"></script>
+</body>
+</html>

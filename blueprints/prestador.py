@@ -30,8 +30,8 @@ def create():
 
             prestador = Prestador(cnpj, razao_social, data_abertura, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado)
 
-            if Prestador.query.filter_by(cnpj=cnpj).count() > 0:
-                return render_template('prestador.html', prestador=prestador, erros=['Este CNPJ já está cadastrado'])
+            if Prestador.query.filter_by(email=email).count() > 0:
+                return render_template('prestador.html', prestador=prestador, erros=['Este e-mail já está cadastrado'])
 
             database.session.add(prestador)
             database.session.commit()
